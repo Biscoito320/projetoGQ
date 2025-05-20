@@ -53,7 +53,7 @@ function App() {
               <path d="M2 13c3.5-3.5 6-7 11-7 4 0 7 1 8.5 2.5"/>
             </svg>
           </motion.div>
-          <h1 className="text-2xl font-bold gradient-text">EcoDesafios</h1>
+          <h1 className="text-2xl font-bold gradient-text">ClimaQuest</h1>
           <p className="text-muted-foreground">Carregando um mundo mais sustentável...</p>
         </motion.div>
       </div>
@@ -70,7 +70,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/desafios" element={<ChallengesPage />} />
-                <Route path="/trilha" element={<LearningTrailPage />} />
+                <Route path="/aprender" element={<LearningTrailPage />} />
                 <Route path="/loja" element={<ShopPage />} />
                 <Route path="/perfil" element={<ProfilePage />} />
                 <Route path="/login" element={<LoginPage />} />

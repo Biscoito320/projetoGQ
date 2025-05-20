@@ -5,65 +5,67 @@
 
 @layer base {
   :root {
-    --background: 60 50% 98%;
-    --foreground: 142 10% 10%;
+    --background: 0 0% 100%; /* Branco */
+    --foreground: 215 20% 27%; /* Cinza escuro azulado para texto */
     
-    --card: 60 50% 98%;
-    --card-foreground: 142 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 20% 27%;
     
-    --popover: 60 50% 98%;
-    --popover-foreground: 142 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 20% 27%;
     
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 140 60% 55%; /* Verde principal mais suave */
+    --primary-foreground: 0 0% 100%; /* Branco para texto sobre primário */
     
-    --secondary: 48 95% 53%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 50 90% 60%; /* Amarelo secundário */
+    --secondary-foreground: 215 20% 27%; /* Cinza escuro para texto sobre secundário */
     
-    --muted: 60 10% 92%;
-    --muted-foreground: 142 5% 40%;
+    --muted: 220 15% 96%; /* Cinza muito claro para fundos sutis */
+    --muted-foreground: 215 15% 45%; /* Cinza médio para texto silenciado */
     
-    --accent: 48 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 140 60% 75%; /* Verde mais claro para acentos */
+    --accent-foreground: 215 20% 27%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 60%; /* Vermelho para ações destrutivas */
     --destructive-foreground: 0 0% 100%;
     
-    --border: 60 20% 85%;
-    --input: 60 20% 85%;
-    --ring: 142 76% 36%;
+    --border: 220 15% 88%; /* Cinza claro para bordas */
+    --input: 220 15% 88%;
+    --ring: 140 60% 55%;
     
-    --radius: 0.75rem;
+    --radius: 0.75rem; /* Bordas mais arredondadas */
   }
  
   .dark {
-    --background: 142 30% 5%;
-    --foreground: 60 10% 98%;
+    /* Para manter a consistência, o modo escuro usará uma variação mais escura do tema claro,
+       mas mantendo a inspiração da imagem. A imagem de referência é predominantemente clara. */
+    --background: 215 25% 12%; /* Cinza muito escuro azulado */
+    --foreground: 220 15% 90%; /* Cinza muito claro para texto */
     
-    --card: 142 30% 8%;
-    --card-foreground: 60 10% 98%;
+    --card: 215 25% 16%;
+    --card-foreground: 220 15% 90%;
     
-    --popover: 142 30% 8%;
-    --popover-foreground: 60 10% 98%;
+    --popover: 215 25% 16%;
+    --popover-foreground: 220 15% 90%;
     
-    --primary: 142 76% 36%;
+    --primary: 140 60% 55%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 48 95% 53%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 50 90% 60%;
+    --secondary-foreground: 215 20% 27%;
     
-    --muted: 142 30% 15%;
-    --muted-foreground: 60 10% 70%;
+    --muted: 215 25% 20%;
+    --muted-foreground: 220 15% 65%;
     
-    --accent: 48 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 140 60% 75%;
+    --accent-foreground: 215 20% 27%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 142 30% 20%;
-    --input: 142 30% 20%;
-    --ring: 142 76% 36%;
+    --border: 215 25% 25%;
+    --input: 215 25% 25%;
+    --ring: 140 60% 55%;
   }
 }
 
@@ -74,36 +76,48 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', sans-serif; /* Fonte mais moderna e suave */
   }
 }
 
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
 }
 
 .eco-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: 
+    radial-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+    radial-gradient(hsl(var(--secondary) / 0.05) 1px, transparent 1px);
+  background-size: 30px 30px, 30px 30px;
+  background-position: 0 0, 15px 15px;
 }
 
 .leaf-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2322c55e' fill-opacity='0.1'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' opacity='.5'/%3E%3Cpath d='M15 15h50v50H15V15zm20 20v10h10V35h-10zm-5-5h20v20H30V30z'/%3E%3C/g%3E%3C/svg%3E");
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='hsl(var(--primary))' fill-opacity='0.05'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' opacity='.5'/%3E%3Cpath d='M15 15h50v50H15V15zm20 20v10h10V35h-10zm-5-5h20v20H30V30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.challenge-card {
+.soft-shadow {
+  box-shadow: 
+    5px 5px 10px hsl(var(--muted) / 0.7), 
+    -5px -5px 10px hsl(var(--background) / 1),
+    inset 1px 1px 2px hsl(var(--muted) / 0.3),
+    inset -1px -1px 2px hsl(var(--background) / 0.5);
+}
+
+.soft-shadow-inset {
+  box-shadow: 
+    inset 5px 5px 10px hsl(var(--muted) / 0.7), 
+    inset -5px -5px 10px hsl(var(--background) / 1);
+}
+
+.challenge-card, .reward-card, .lesson-node-card {
   transition: all 0.3s ease;
+  @apply rounded-xl border border-border/50;
 }
 
-.challenge-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.reward-card {
-  transition: all 0.3s ease;
-}
-
-.reward-card:hover {
-  transform: scale(1.03);
+.challenge-card:hover, .reward-card:hover, .lesson-node-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 20px hsl(var(--muted) / 0.5);
 }
 
 .trail-connector {
@@ -111,8 +125,8 @@
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, #22c55e, #fbbf24);
+  width: 3px; /* Thinner line */
+  background: linear-gradient(to bottom, hsl(var(--primary) / 0.7), hsl(var(--secondary) / 0.7));
   transform: translateX(-50%);
   z-index: -1;
 }
@@ -128,9 +142,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 30px; /* Smaller node */
+  height: 30px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #22c55e, #fbbf24);
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
   z-index: -1;
+}
+
+/* Neumorphic button style adjustment, if needed. shadcn/ui buttons are quite flexible */
+.neumorphic-btn {
+  @apply bg-background text-foreground rounded-lg px-6 py-3 font-semibold transition-all duration-200 ease-in-out;
+  @apply soft-shadow;
+}
+.neumorphic-btn:hover {
+  @apply shadow-none;
+  transform: translateY(1px);
+}
+.neumorphic-btn:active {
+  @apply soft-shadow-inset;
+  transform: translateY(2px);
 }
