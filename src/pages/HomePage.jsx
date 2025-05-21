@@ -2,20 +2,41 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Leaf, Award, BookOpen, ShoppingBag, Users, Target, CheckCircle } from "lucide-react";
+import { ArrowRight, Leaf, Award, BookOpen, ShoppingBag, Users, Target, CheckCircle, Zap, TrendingUp, PlayCircle, Star, MessageSquare, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
+import { cn } from "@/lib/utils";
 
-const FeatureCard = ({ icon: Icon, title, description, delay, variants }) => (
+const FeatureCard = ({ icon: Icon, title, description, variants, delay = 0 }) => (
   <motion.div
     variants={variants}
-    className="bg-card rounded-2xl p-6 border border-border/30 soft-shadow flex flex-col items-center text-center"
+    custom={delay}
+    className="bg-card rounded-2xl p-6 text-center modern-card-hover border-2 border-transparent hover:border-primary/50"
   >
-    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-5 border-2 border-primary/30">
+    <div className="h-16 w-16 rounded-xl bg-gradient-to-br from-primary/15 to-secondary/15 flex items-center justify-center mb-6 mx-auto border-2 border-primary/20 shadow-lg transform transition-transform hover:scale-110 hover:rotate-[-5deg]">
       <Icon className="h-8 w-8 text-primary" />
     </div>
-    <h3 className="text-xl font-semibold mb-2 text-foreground">{title}</h3>
-    <p className="text-muted-foreground text-sm">{description}</p>
+    <h3 className="text-xl font-bold mb-2 text-foreground tracking-tight lowercase">{title}</h3>
+    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+  </motion.div>
+);
+
+const TestimonialCard = ({ quote, author, avatarSeed, variants, delay = 0 }) => (
+   <motion.div
+    variants={variants}
+    custom={delay}
+    className="bg-card rounded-2xl p-6 modern-card-hover border-2 border-transparent hover:border-secondary/50"
+  >
+    <div className="flex items-center mb-4">
+      <img  class="h-12 w-12 rounded-full mr-4 border-2 border-secondary shadow-sm" alt={`Avatar de ${author}`} src="https://images.unsplash.com/photo-1677696795873-ca21e7d76a51" />
+      <div>
+        <h4 className="font-semibold text-foreground">{author}</h4>
+        <div className="flex text-yellow-400">
+          {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+        </div>
+      </div>
+    </div>
+    <p className="text-muted-foreground text-sm italic leading-relaxed">"{quote}"</p>
   </motion.div>
 );
 
@@ -24,274 +45,247 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (delay = 0) => ({
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
       y: 0,
-      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        duration: 0.6
+        damping: 15,
+        delay,
+        staggerChildren: 0.15,
+      },
+    }),
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0, scale: 0.95, rotate: -2 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 12
       },
     },
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 eco-pattern opacity-50 z-0"></div>
+      <motion.section 
+        className="relative py-32 md:py-40 overflow-hidden genz-pattern"
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background z-0"></div>
         <div className="container relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Sua jornada para um <span className="gradient-text">planeta mais saudável</span> começa aqui.
-              </h1>
-              <p className="text-lg text-muted-foreground mb-10">
-                ClimaQuest: aprenda, aja, evolua. Participe de desafios, expanda seu conhecimento sobre sustentabilidade e ganhe recompensas.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <motion.div variants={itemVariants}>
+              <motion.h1 
+                className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tighter"
+                initial={{ letterSpacing: "-0.05em" }}
+                animate={{ letterSpacing: "-0.025em" }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Mude o <span className="gradient-text-secondary">game</span>. <br/>Salve o <span className="gradient-text">planeta</span>.
+              </motion.h1>
+              <motion.p variants={itemVariants} className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-lg">
+                <span className="font-bold gradient-text-secondary lowercase">ClimaQuest</span>: sua dose diária de missões épicas pra um futuro mais verde. Aprenda, aja, inspire. #EcoWarrior #GeraçãoDoClima
+              </motion.p>
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
+                variants={sectionVariants} // Stagger buttons
               >
                 <motion.div variants={itemVariants}>
                   {user ? (
-                    <Button size="lg" onClick={() => navigate("/desafios")} className="group neumorphic-btn w-full sm:w-auto">
-                      Ver Desafios
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <Button size="lg" onClick={() => navigate("/desafios")} className="group genz-btn w-full sm:w-auto text-base px-8 py-3.5">
+                      Ver Missões
+                      <ArrowRight className="ml-2.5 h-5 w-5 transition-transform group-hover:translate-x-1.5 group-hover:rotate-[360deg] duration-300" />
                     </Button>
                   ) : (
-                    <Button size="lg" onClick={() => navigate("/cadastro")} className="group neumorphic-btn w-full sm:w-auto">
-                      Começar Agora
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                     <Button size="lg" onClick={() => navigate("/cadastro")} className="group genz-btn w-full sm:w-auto text-base px-8 py-3.5">
+                      Entrar na Quest!
+                      <ArrowRight className="ml-2.5 h-5 w-5 transition-transform group-hover:translate-x-1.5 group-hover:rotate-[360deg] duration-300" />
                     </Button>
                   )}
                 </motion.div>
                 <motion.div variants={itemVariants}>
-                  <Button size="lg" variant="outline" onClick={() => navigate("/aprender")} className="w-full sm:w-auto neumorphic-btn">
+                  <Button size="lg" variant="outline" onClick={() => navigate("/aprender")} className="w-full sm:w-auto genz-btn bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-base px-8 py-3.5">
                     Aprender Mais
                   </Button>
                 </motion.div>
               </motion.div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              variants={itemVariants}
               className="relative"
             >
-              <div className="rounded-3xl overflow-hidden soft-shadow border-4 border-background">
-                 <img  className="w-full h-auto object-cover aspect-[4/3]" alt="Paisagem ensolarada com turbinas eólicas, árvores e um reservatório de água, representando um ambiente sustentável." src="https://images.unsplash.com/photo-1697869162556-ab57db502c09" />
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-card/80 transform transition-transform duration-500 ease-out hover:scale-105 hover:rotate-1">
+                <img  className="w-full h-auto object-cover aspect-[5/4]" alt="Jovem estiloso usando VR em um ambiente futurista com plantas, estética GenZ." src="https://images.unsplash.com/photo-1552871444-956437c99b64" />
               </div>
+              <motion.div 
+                className="absolute -bottom-8 -right-8 h-24 w-24 bg-accent rounded-full flex items-center justify-center shadow-xl animate-pulse"
+                animate={{ scale: [1, 1.1, 1], y: [0, -5, 0]}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Leaf className="h-12 w-12 text-accent-foreground"/>
+              </motion.div>
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Features Section */}
-      <section className="py-20 md:py-28 bg-muted/50">
+      {/* How It Works Section */}
+      <motion.section 
+        className="py-24 md:py-32 bg-muted/30"
+        variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-center mb-16"
-          >
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Como o <span className="gradient-text">ClimaQuest</span> Funciona
+          <motion.div variants={itemVariants} className="text-center mb-16 md:mb-20">
+            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black mb-4 text-foreground tracking-tighter lowercase">
+              Como funciona o <span className="gradient-text-secondary">ClimaQuest</span>?
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Uma plataforma interativa para transformar seu conhecimento em ações concretas pelo clima, de forma divertida e recompensadora.
+            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Transforme seu hype em impacto real. É easy, é fun, é pelo planeta. Saca só:
             </motion.p>
           </motion.div>
 
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            variants={sectionVariants} // Stagger feature cards
           >
-            <FeatureCard icon={BookOpen} title="Aprenda" description="Acesse conteúdos educativos sobre mudanças climáticas e sustentabilidade." variants={itemVariants} />
-            <FeatureCard icon={Target} title="Participe" description="Complete desafios práticos que reduzem seu impacto ambiental no dia a dia." variants={itemVariants} />
-            <FeatureCard icon={Award} title="Ganhe Pontos" description="Acumule pontos ao completar desafios e avançar na trilha de aprendizado." variants={itemVariants} />
-            <FeatureCard icon={ShoppingBag} title="Troque Recompensas" description="Use seus pontos para adquirir produtos sustentáveis e experiências incríveis." variants={itemVariants} />
+            <FeatureCard icon={BookOpen} title="Aprenda" description="Conteúdos rápidos e brabos sobre clima e sustentabilidade. Sem chatice." variants={itemVariants} delay={0.1} />
+            <FeatureCard icon={Target} title="Participe" description="Complete missões que diminuem seu impacto no planeta. GG WP!" variants={itemVariants} delay={0.2} />
+            <FeatureCard icon={Award} title="Ganhe XP" description="Acumule XP completando missões e subindo de nível. Mostre seu poder!" variants={itemVariants} delay={0.3} />
+            <FeatureCard icon={ShoppingBag} title="Resgate Prêmios" description="Use seu XP pra pegar paradas sustentáveis e uns mimos maneiros." variants={itemVariants} delay={0.4} />
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Impact Section (ODS 13.3) */}
-      <section className="py-20 md:py-28 bg-background">
+      {/* ODS Section */}
+      <motion.section 
+        className="py-24 md:py-32 bg-background"
+        variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+             <motion.div
+              variants={itemVariants}
+              className="relative order-2 md:order-1"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                Nosso Foco: <span className="gradient-text">ODS 13.3</span>
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-card/80 transform transition-transform duration-500 ease-out hover:scale-105 hover:rotate-[-1deg]">
+                <img  className="w-full h-auto object-cover aspect-[5/4]" alt="Grupo de jovens diversos colaborando em projeto de sustentabilidade, com grafites e estética urbana." src="https://images.unsplash.com/photo-1580982333389-cca46f167381" />
+              </div>
+               <motion.div 
+                className="absolute -top-8 -left-8 h-20 w-20 bg-secondary rounded-2xl flex items-center justify-center shadow-xl transform -rotate-12"
+                animate={{ rotate: [-12, -8, -15, -12]}}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Zap className="h-10 w-10 text-secondary-foreground"/>
+              </motion.div>
+            </motion.div>
+            <motion.div variants={itemVariants} className="order-1 md:order-2">
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-foreground tracking-tighter">
+                Nossa Vibe: <span className="gradient-text-secondary">ODS 13.3</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                O Objetivo de Desenvolvimento Sustentável 13.3 foca em melhorar a educação, aumentar a conscientização e a capacidade sobre mitigação, adaptação, redução de impacto e alerta precoce da mudança do clima. No ClimaQuest, capacitamos você a ser parte da solução.
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                A gente tá ligado no ODS 13.3: educação, conscientização e ação climática. No ClimaQuest, você vira pro player da sustentabilidade.
               </p>
               <ul className="space-y-4 mb-8">
                 {[
-                  "Educação climática acessível e engajadora.",
-                  "Desafios práticos para ação imediata.",
-                  "Comunidade de apoio para um futuro sustentável."
+                  {text: "Educação climática sem ser cringe.", icon: PlayCircle},
+                  {text: "Missões práticas pra resultados imediatos.", icon: Target},
+                  {text: "Comunidade engajada pra um futuro mais verde.", icon: MessageSquare}
                 ].map((item, idx) => (
                   <motion.li 
                     key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
-                    className="flex items-start gap-3"
+                    variants={itemVariants}
+                    className="flex items-center gap-3.5"
                   >
-                    <div className="flex-shrink-0 mt-1">
-                      <CheckCircle className="h-6 w-6 text-primary" />
+                    <div className="flex-shrink-0 p-2.5 bg-secondary/15 rounded-lg">
+                      <item.icon className="h-6 w-6 text-secondary" />
                     </div>
-                    <span className="text-muted-foreground">{item}</span>
+                    <span className="text-muted-foreground leading-relaxed">{item.text}</span>
                   </motion.li>
                 ))}
               </ul>
-              <Button size="lg" onClick={() => navigate("/desafios")} className="neumorphic-btn">
-                Comece a Agir
+              <Button size="lg" onClick={() => navigate("/desafios")} className="group genz-btn text-base px-8 py-3.5">
+                Começar a Agir
+                <ThumbsUp className="ml-2.5 h-5 w-5 transition-transform group-hover:scale-125" />
               </Button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="relative"
-            >
-               <div className="rounded-3xl overflow-hidden soft-shadow border-4 border-background">
-                <img  className="w-full h-auto object-cover aspect-[4/3]" alt="Grupo de pessoas diversas aprendendo sobre sustentabilidade em um ambiente natural e ensolarado." src="https://images.unsplash.com/photo-1673877814393-25f49b77271a" />
-              </div>
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Community Section */}
-      <section className="py-20 md:py-28 bg-muted/50">
+       {/* Testimonials Section */}
+      <motion.section 
+        className="py-24 md:py-32 bg-muted/30"
+        variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+      >
         <div className="container">
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Junte-se à nossa <span className="gradient-text">Comunidade</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Conecte-se com pessoas que compartilham os mesmos valores e objetivos de construir um futuro mais sustentável e consciente.
-            </p>
+          <motion.div variants={itemVariants} className="text-center mb-16 md:mb-20">
+            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black mb-4 text-foreground tracking-tighter lowercase">
+              A galera <span className="gradient-text-secondary">curtiu</span>!
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Olha o que a rapaziada tá falando do ClimaQuest:
+            </motion.p>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-card rounded-3xl p-8 md:p-12 soft-shadow border border-border/30"
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            variants={sectionVariants} // Stagger testimonials
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div className="order-2 md:order-1">
-                <Users className="h-12 w-12 text-primary mb-6" />
-                <h3 className="text-2xl font-semibold mb-4 text-foreground">Engajamento que Inspira</h3>
-                <p className="text-muted-foreground mb-8">
-                  No ClimaQuest, você não está sozinho. Faça parte de uma rede de indivíduos dedicados à ação climática, trocando ideias, celebrando conquistas e aprendendo juntos.
-                </p>
-                <Button size="lg" onClick={() => user ? navigate("/desafios") : navigate("/cadastro")} className="neumorphic-btn">
-                  {user ? "Explorar Comunidade" : "Faça Parte"}
-                </Button>
-              </div>
-              <div className="order-1 md:order-2 rounded-2xl overflow-hidden soft-shadow">
-                 <img  className="w-full h-auto object-cover aspect-video" alt="Grupo de pessoas sorrindo e colaborando em um projeto comunitário ao ar livre." src="https://images.unsplash.com/photo-1682009562551-419cbd18091b" />
-              </div>
-            </div>
-             <motion.div 
-                className="mt-12 pt-8 border-t border-border/50"
-                variants={itemVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <h4 className="text-xl font-semibold mb-4 text-center text-foreground">O que nossos membros dizem:</h4>
-                <div className="bg-background/50 p-6 rounded-xl soft-shadow-inset">
-                  <p className="italic text-muted-foreground mb-3">
-                    "ClimaQuest mudou minha perspectiva sobre sustentabilidade. Os desafios são divertidos e as lições, muito informativas. Sinto que realmente estou fazendo a diferença!"
-                  </p>
-                  <p className="text-sm font-medium text-primary text-right">- Alex P., Usuário Ativo</p>
-                </div>
-              </motion.div>
+            <TestimonialCard quote="ClimaQuest é MUITO brabo! As missões são divertidas e aprendi demais. Sinto que tô realmente fazendo a diferença, saca?" author="Livia_Gamer_Eco" avatarSeed="livia" variants={itemVariants} delay={0.1}/>
+            <TestimonialCard quote="Finalmente um app que não é chato pra aprender sobre o planeta. Os prêmios são irados também! Recomendo 10/10." author="NoPixelPlanet" avatarSeed="noah" variants={itemVariants} delay={0.2}/>
+            <TestimonialCard quote="Entrei pelo hype, fiquei pela causa. ClimaQuest tornou a sustentabilidade parte do meu dia a dia. GG ClimaQuest!" author="EcoStreamQueen" avatarSeed="sophia" variants={itemVariants} delay={0.3}/>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-primary via-green-500 to-secondary">
+      <motion.section 
+        className="py-32 md:py-40 bg-gradient-to-br from-primary via-accent to-highlight"
+        variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}
+      >
         <div className="container text-center">
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Pronto para fazer parte da mudança?
+          <motion.div variants={itemVariants}>
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-white tracking-tighter">
+              Bora mudar o jogo?
             </h2>
-            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-              Sua jornada de aprendizado e ação pelo clima começa agora. Cadastre-se e comece a transformar o mundo, um desafio de cada vez.
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Sua jornada de XP e impacto climático começa AGORA. Crie sua conta e comece a buildar um futuro mais sustentável. LET'S GOOO!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {user ? (
                 <Button
                   size="xl"
                   onClick={() => navigate("/desafios")}
-                  className="bg-white text-primary hover:bg-white/90 shadow-lg transform hover:scale-105 transition-transform duration-200 px-10 py-4 text-lg"
+                  className="genz-btn bg-white text-primary hover:bg-white/95 shadow-xl px-10 py-4 text-lg font-semibold rounded-xl"
                 >
-                  Explorar Desafios
+                  Ver Missões
                 </Button>
               ) : (
                 <>
                   <Button
                     size="xl"
                     onClick={() => navigate("/cadastro")}
-                    className="bg-white text-primary hover:bg-white/90 shadow-lg transform hover:scale-105 transition-transform duration-200 px-10 py-4 text-lg"
+                    className="genz-btn bg-white text-primary hover:bg-white/95 shadow-xl px-10 py-4 text-lg font-semibold rounded-xl"
                   >
-                    Criar Minha Conta
+                    Criar Conta (Grátis!)
                   </Button>
                   <Button
                     size="xl"
                     variant="outline"
                     onClick={() => navigate("/login")}
-                    className="border-white text-white hover:bg-white/10 shadow-lg transform hover:scale-105 transition-transform duration-200 px-10 py-4 text-lg"
+                    className="genz-btn bg-transparent border-2 border-white text-white hover:bg-white/20 shadow-xl px-10 py-4 text-lg font-semibold rounded-xl"
                   >
                     Já Tenho Conta
                   </Button>
@@ -300,7 +294,7 @@ const HomePage = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

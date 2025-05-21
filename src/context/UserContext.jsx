@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  // Carregar dados do usuário do localStorage ao iniciar
   useEffect(() => {
     const storedUser = localStorage.getItem("ecoUser");
     if (storedUser) {
@@ -20,7 +19,6 @@ export const UserProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Salvar dados do usuário no localStorage quando mudar
   useEffect(() => {
     if (user) {
       localStorage.setItem("ecoUser", JSON.stringify(user));
@@ -28,7 +26,6 @@ export const UserProvider = ({ children }) => {
   }, [user]);
 
   const login = (userData) => {
-    // Verificar se o usuário existe no localStorage
     const users = JSON.parse(localStorage.getItem("ecoUsers") || "[]");
     const foundUser = users.find(
       (u) => u.email === userData.email && u.password === userData.password
@@ -55,7 +52,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const register = (userData) => {
-    // Verificar se o email já está em uso
     const users = JSON.parse(localStorage.getItem("ecoUsers") || "[]");
     const existingUser = users.find((u) => u.email === userData.email);
 
@@ -68,7 +64,6 @@ export const UserProvider = ({ children }) => {
       return false;
     }
 
-    // Criar novo usuário
     const newUser = {
       id: Date.now().toString(),
       name: userData.name,
@@ -80,26 +75,27 @@ export const UserProvider = ({ children }) => {
       completedLessons: [],
       inventory: [],
       createdAt: new Date().toISOString(),
+      avatarSeed: Date.now().toString(), // Initialize avatarSeed
+      role: userData.email.includes('admin@') ? 'admin' : 'user' // Basic role assignment
     };
 
-    // Salvar no localStorage
     users.push(newUser);
     localStorage.setItem("ecoUsers", JSON.stringify(users));
 
-    // Fazer login com o novo usuário
     const userWithoutPassword = { ...newUser };
     delete userWithoutPassword.password;
     
     setUser(userWithoutPassword);
     toast({
       title: "Conta criada com sucesso!",
-      description: "Bem-vindo ao EcoDesafios!",
+      description: "Bem-vindo ao ClimaQuest!",
     });
     return true;
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("ecoUser");
     toast({
       title: "Logout realizado",
       description: "Até a próxima!",
@@ -109,14 +105,12 @@ export const UserProvider = ({ children }) => {
   const updateUser = (updatedData) => {
     if (!user) return false;
 
-    // Atualizar usuário no contexto
     const updatedUser = { ...user, ...updatedData };
     setUser(updatedUser);
 
-    // Atualizar usuário no localStorage
     const users = JSON.parse(localStorage.getItem("ecoUsers") || "[]");
     const updatedUsers = users.map((u) => 
-      u.id === user.id ? { ...u, ...updatedData } : u
+      u.id === user.id ? { ...u, ...updatedUser } : u // Ensure all fields of updatedUser are spread
     );
     localStorage.setItem("ecoUsers", JSON.stringify(updatedUsers));
 
@@ -151,17 +145,15 @@ export const UserProvider = ({ children }) => {
   const completeChallenge = (challengeId) => {
     if (!user) return false;
 
-    // Verificar se o desafio já foi completado
     if (user.completedChallenges.includes(challengeId)) {
       toast({
-        variant: "destructive",
+        variant: "default",
         title: "Desafio já completado",
         description: "Você já completou este desafio anteriormente.",
       });
       return false;
     }
 
-    // Adicionar desafio à lista de completados
     const updatedChallenges = [...user.completedChallenges, challengeId];
     updateUser({ completedChallenges: updatedChallenges });
     return true;
@@ -170,17 +162,15 @@ export const UserProvider = ({ children }) => {
   const completeLesson = (lessonId) => {
     if (!user) return false;
 
-    // Verificar se a lição já foi completada
     if (user.completedLessons.includes(lessonId)) {
       toast({
-        variant: "destructive",
+        variant: "default",
         title: "Lição já completada",
         description: "Você já completou esta lição anteriormente.",
       });
       return false;
     }
 
-    // Adicionar lição à lista de completadas
     const updatedLessons = [...user.completedLessons, lessonId];
     updateUser({ completedLessons: updatedLessons });
     return true;
@@ -189,7 +179,6 @@ export const UserProvider = ({ children }) => {
   const purchaseItem = (item) => {
     if (!user) return false;
 
-    // Verificar se o usuário tem pontos suficientes
     if (user.points < item.price) {
       toast({
         variant: "destructive",
@@ -199,8 +188,7 @@ export const UserProvider = ({ children }) => {
       return false;
     }
 
-    // Adicionar item ao inventário e subtrair pontos
-    const updatedInventory = [...user.inventory, { ...item, purchasedAt: new Date().toISOString() }];
+    const updatedInventory = [...user.inventory, { ...item, id: item.id, purchasedAt: new Date().toISOString() }];
     updateUser({ 
       inventory: updatedInventory,
       points: user.points - item.price
