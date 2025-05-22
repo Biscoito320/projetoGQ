@@ -3,34 +3,45 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { 
-  ShoppingBag, Leaf, AlertCircle, 
+  Search, Filter, ShoppingBag, Leaf, AlertCircle, 
+  CheckCircle2, ArrowRight, PlusCircle, Edit, Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useUser } from "@/context/UserContext";
 import { rewards as initialRewardsData } from "@/data/rewards";
-import RewardCardNew from "@/components/rewards/RewardCardNew";
+import RewardCardNew from "@/components/rewards/RewardCardNew"; // Updated import
 import RewardForm from "@/components/RewardForm";
-import RewardDetailsDialog from "@/components/rewards/RewardDetailsDialog";
-import RewardPurchaseDialog from "@/components/rewards/RewardPurchaseDialog";
-import RewardFilters from "@/components/rewards/RewardFilters";
-import RewardDeleteDialog from "@/components/rewards/RewardDeleteDialog";
-import { 
-  saveRewardsToLocalStorage, 
-  loadRewardsFromLocalStorage 
-} from "@/lib/localStorageUtils";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const ShopPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, purchaseItem } = useUser();
   
-  const [rewards, setRewards] = useState(() => loadRewardsFromLocalStorage(initialRewardsData));
+  const [rewards, setRewards] = useState(() => {
+    const savedRewards = localStorage.getItem("rewards");
+    try {
+      return savedRewards ? JSON.parse(savedRewards) : initialRewardsData;
+    } catch (error) {
+      console.error("Failed to parse rewards from localStorage", error);
+      return initialRewardsData;
+    }
+  });
 
   useEffect(() => {
-    saveRewardsToLocalStorage(rewards);
+    localStorage.setItem("rewards", JSON.stringify(rewards));
   }, [rewards]);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,7 +58,7 @@ const ShopPage = () => {
   const [rewardToDelete, setRewardToDelete] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  const categories = ["Todos", ...new Set(rewards.map(reward => reward.category).sort())];
+  const categories = ["Todos", ...new Set(rewards.map(reward => reward.category))];
 
   const filteredRewards = rewards.filter(reward => {
     const matchesSearch = reward.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -180,15 +191,35 @@ const ShopPage = () => {
           </motion.div>
         )}
 
-        <RewardFilters
-          searchTerm={searchTerm}
-          onSearchTermChange={setSearchTerm}
-          selectedCategory={selectedCategoryFilter}
-          onCategoryChange={setSelectedCategoryFilter}
-          categories={categories}
-          isAdmin={isAdmin}
-          onAddReward={handleAddReward}
-        />
+        <div className="mb-8 md:mb-10 flex flex-col md:flex-row gap-4 items-center">
+          <div className="relative flex-grow w-full md:w-auto">
+            <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="Buscar recompensas incríveis..."
+              className="pl-10 py-2.5 rounded-lg soft-shadow-inset border-border/50 focus:border-primary"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          
+          <div className="relative w-full md:w-auto md:min-w-[220px]">
+            <Filter className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <select
+              className="w-full h-[42px] pl-10 pr-4 rounded-lg border border-border/50 bg-background text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring soft-shadow-inset focus:border-primary"
+              value={selectedCategoryFilter}
+              onChange={(e) => setSelectedCategoryFilter(e.target.value)}
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
+          {isAdmin && (
+            <Button onClick={handleAddReward} className="w-full md:w-auto neumorphic-btn bg-primary text-primary-foreground hover:bg-primary/90">
+              <PlusCircle className="mr-2 h-4 w-4" /> Adicionar Recompensa
+            </Button>
+          )}
+        </div>
 
         {filteredRewards.length > 0 ? (
           <motion.div 
@@ -198,7 +229,7 @@ const ShopPage = () => {
             animate="visible"
           >
             {filteredRewards.map((reward) => (
-              <RewardCardNew
+              <RewardCardNew // Using the new card
                 key={reward.id}
                 reward={reward}
                 onSelect={handleRewardCardClick}
@@ -230,25 +261,89 @@ const ShopPage = () => {
       </div>
 
       {selectedRewardDetails && (
-        <RewardDetailsDialog
-          isOpen={isDetailsDialogOpen}
-          onOpenChange={setIsDetailsDialogOpen}
-          reward={selectedRewardDetails}
-          userPoints={user?.points}
-          onPurchase={handlePurchase}
-          hasPurchased={hasUserPurchased(selectedRewardDetails.id)}
-        />
+        <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
+          <DialogContent className="sm:max-w-lg soft-shadow rounded-xl">
+            <DialogHeader className="pb-2">
+              <DialogTitle className="text-2xl font-bold gradient-text">{selectedRewardDetails.name}</DialogTitle>
+              <DialogDescription>
+                <div className="flex items-center gap-3 mt-2 flex-wrap">
+                  <span className="text-xs font-medium bg-primary/10 text-primary px-2.5 py-1 rounded-full flex items-center">
+                    <Leaf className="h-3.5 w-3.5 mr-1.5" />
+                    {selectedRewardDetails.price} pontos
+                  </span>
+                  <span className="text-xs font-medium bg-muted px-2.5 py-1 rounded-full text-muted-foreground">
+                    {selectedRewardDetails.category}
+                  </span>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="my-5 max-h-[45vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-muted scrollbar-track-background-hover">
+              <div className="space-y-3">
+                 <img  className="w-full h-auto object-cover rounded-lg aspect-video mb-3 soft-shadow" alt={`Imagem da recompensa ${selectedRewardDetails.name}`} src="https://images.unsplash.com/photo-1693971810143-3834c76d702f" />
+                <div>
+                  <h3 className="font-semibold mb-1.5 text-foreground">Descrição Detalhada</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{selectedRewardDetails.description}</p>
+                </div>
+              </div>
+            </div>
+            <DialogFooter className="pt-4 flex flex-col sm:flex-row sm:justify-between items-center gap-3 border-t border-border/50">
+              {user && (
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Leaf className="h-4 w-4 text-primary" />
+                  <span>Seus pontos: <span className="font-semibold text-primary">{user.points}</span></span>
+                </div>
+              )}
+              <div className="flex gap-3 w-full sm:w-auto">
+                <DialogClose asChild className="w-full sm:w-auto">
+                  <Button variant="outline" className="neumorphic-btn">Fechar</Button>
+                </DialogClose>
+                {hasUserPurchased(selectedRewardDetails.id) ? (
+                  <div className="flex items-center text-primary px-4 py-2 rounded-lg bg-primary/10">
+                    <CheckCircle2 className="h-5 w-5 mr-2" />
+                    <span className="text-sm font-medium">Já Adquirido</span>
+                  </div>
+                ) : (
+                  <Button 
+                    onClick={handlePurchase}
+                    disabled={!user || user.points < selectedRewardDetails.price}
+                    className="w-full sm:w-auto neumorphic-btn bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    {!user ? "Faça Login para Adquirir" : 
+                     user.points < selectedRewardDetails.price ? `Faltam ${selectedRewardDetails.price - user.points} pontos` : 
+                     "Adquirir Agora"}
+                  </Button>
+                )}
+              </div>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       )}
 
-      <RewardPurchaseDialog
-        isOpen={isPurchaseDialogOpen}
-        onOpenChange={setIsPurchaseDialogOpen}
-        rewardName={selectedRewardDetails?.name}
-        onNavigateToInventory={() => {
-          setIsPurchaseDialogOpen(false);
-          navigate("/perfil");
-        }}
-      />
+      <Dialog open={isPurchaseDialogOpen} onOpenChange={setIsPurchaseDialogOpen}>
+        <DialogContent className="sm:max-w-md soft-shadow rounded-xl">
+          <div className="text-center py-6">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mx-auto mb-5 border-2 border-primary/30">
+              <ShoppingBag className="h-10 w-10 text-primary" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2 text-foreground">Parabéns!</h2>
+            <p className="text-muted-foreground mb-6">
+              Você adquiriu <span className="font-semibold text-primary">{selectedRewardDetails?.name}</span> com sucesso!
+            </p>
+            <div className="flex flex-col gap-3">
+              <Button onClick={() => {
+                setIsPurchaseDialogOpen(false);
+                navigate("/perfil");
+              }} className="neumorphic-btn bg-primary text-primary-foreground hover:bg-primary/90">
+                Ver Meu Inventário
+              </Button>
+              <Button variant="outline" onClick={() => setIsPurchaseDialogOpen(false)} className="neumorphic-btn">
+                Continuar Comprando
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
         <RewardForm 
@@ -258,12 +353,24 @@ const ShopPage = () => {
         />
       </Dialog>
 
-      <RewardDeleteDialog
-        isOpen={isDeleteDialogOpen}
-        onOpenChange={setIsDeleteDialogOpen}
-        onConfirm={confirmDeleteReward}
-        onCancel={() => setRewardToDelete(null)}
-      />
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent className="soft-shadow rounded-xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir esta recompensa? Esta ação não pode ser desfeita e a recompensa será removida permanentemente.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+             <AlertDialogCancel asChild>
+              <Button variant="outline" onClick={() => setRewardToDelete(null)} className="neumorphic-btn">Cancelar</Button>
+            </AlertDialogCancel>
+            <AlertDialogAction asChild>
+              <Button onClick={confirmDeleteReward} className="bg-destructive hover:bg-destructive/90 text-destructive-foreground neumorphic-btn">Excluir</Button>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
     </div>
   );

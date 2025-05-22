@@ -2,7 +2,7 @@
 export const challenges = [
   {
     id: "c1",
-    title: "Dia Sem Carne Vermelha",
+    title: "Não coma carne vermelha por um dia",
     description: "Passe um dia inteiro sem consumir carne vermelha. Reduzir o consumo de carne é uma forma eficaz de diminuir sua pegada de carbono.",
     points: 20,
     category: "Alimentação Consciente",

@@ -2,22 +2,27 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { useUser } from "@/context/UserContext";
 import { challenges as initialChallengesData } from "@/data/challenges";
-import ChallengeCardNew from "@/components/challenges/ChallengeCardNew";
+import ChallengeCardNew from "@/components/challenges/ChallengeCardNew"; // Updated import
 import ChallengeForm from "@/components/ChallengeForm";
 import ChallengeDetailsDialog from "@/components/challenges/ChallengeDetailsDialog";
 import ChallengeCompletionDialog from "@/components/challenges/ChallengeCompletionDialog";
 import ChallengeFilters from "@/components/challenges/ChallengeFilters";
-import ChallengeDeleteDialog from "@/components/challenges/ChallengeDeleteDialog";
-import { 
-  saveChallengesToLocalStorage, 
-  loadChallengesFromLocalStorage 
-} from "@/lib/localStorageUtils";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 
 const ChallengesPage = () => {
@@ -25,10 +30,18 @@ const ChallengesPage = () => {
   const { toast } = useToast();
   const { user, completeChallenge, addPoints } = useUser();
   
-  const [challenges, setChallenges] = useState(() => loadChallengesFromLocalStorage(initialChallengesData));
+  const [challenges, setChallenges] = useState(() => {
+    const savedChallenges = localStorage.getItem("challenges");
+    try {
+      return savedChallenges ? JSON.parse(savedChallenges) : initialChallengesData;
+    } catch (error) {
+      console.error("Failed to parse challenges from localStorage", error);
+      return initialChallengesData;
+    }
+  });
 
   useEffect(() => {
-    saveChallengesToLocalStorage(challenges);
+    localStorage.setItem("challenges", JSON.stringify(challenges));
   }, [challenges]);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,8 +56,8 @@ const ChallengesPage = () => {
   const [challengeToDelete, setChallengeToDelete] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  const categories = ["Todos", ...new Set(challenges.map(challenge => challenge.category).sort())];
-  const difficulties = ["Todos", ...new Set(challenges.map(challenge => challenge.difficulty).sort())];
+  const categories = ["Todos", ...new Set(challenges.map(challenge => challenge.category))];
+  const difficulties = ["Todos", ...new Set(challenges.map(challenge => challenge.difficulty))];
 
   const filteredChallenges = challenges.filter(challenge => {
     const matchesSearch = challenge.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -70,21 +83,11 @@ const ChallengesPage = () => {
       return;
     }
 
-    if (isCompleted(selectedChallengeDetails.id)) {
-       toast({
-        variant: "default",
-        title: "Desafio já Concluído",
-        description: "Você já ganhou os pontos por este desafio.",
-      });
-      setIsDetailsDialogOpen(false); // Close details if already completed
-      return;
-    }
-
     const success = completeChallenge(selectedChallengeDetails.id);
     if (success) {
       addPoints(selectedChallengeDetails.points, `Desafio completado: ${selectedChallengeDetails.title}`);
       setIsDetailsDialogOpen(false);
-      setIsCompletionDialogOpen(true); 
+      setIsCompletionDialogOpen(true);
        toast({
         title: "Desafio Concluído!",
         description: `Você ganhou ${selectedChallengeDetails.points} pontos.`,
@@ -93,7 +96,7 @@ const ChallengesPage = () => {
        toast({
         variant: "destructive",
         title: "Erro",
-        description: "Não foi possível completar o desafio. Talvez já tenha sido concluído?",
+        description: "Não foi possível completar o desafio.",
       });
     }
   };
@@ -186,12 +189,12 @@ const ChallengesPage = () => {
             animate="visible"
           >
             {filteredChallenges.map((challenge) => (
-              <ChallengeCardNew
+              <ChallengeCardNew // Using the new card
                 key={challenge.id}
                 challenge={challenge}
                 onSelect={handleChallengeCardClick}
-                onEdit={isAdmin ? handleEditChallenge : undefined}
-                onDelete={isAdmin ? handleDeleteChallenge : undefined}
+                onEdit={handleEditChallenge}
+                onDelete={handleDeleteChallenge}
                 isCompleted={isCompleted(challenge.id)}
                 isAdmin={isAdmin}
               />
@@ -230,10 +233,7 @@ const ChallengesPage = () => {
 
       <ChallengeCompletionDialog
         isOpen={isCompletionDialogOpen}
-        onOpenChange={(isOpen) => {
-          setIsCompletionDialogOpen(isOpen);
-          if (!isOpen) setSelectedChallengeDetails(null); // Clear details when closing
-        }}
+        onOpenChange={setIsCompletionDialogOpen}
         points={selectedChallengeDetails?.points}
         navigate={navigate}
       />
@@ -246,12 +246,24 @@ const ChallengesPage = () => {
         />
       </Dialog>
 
-      <ChallengeDeleteDialog
-        isOpen={isDeleteDialogOpen}
-        onOpenChange={setIsDeleteDialogOpen}
-        onConfirm={confirmDeleteChallenge}
-        onCancel={() => setChallengeToDelete(null)}
-      />
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent className="soft-shadow">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir este desafio? Esta ação não pode ser desfeita e o desafio será removido permanentemente.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel asChild>
+              <Button variant="outline" onClick={() => setChallengeToDelete(null)} className="neumorphic-btn">Cancelar</Button>
+            </AlertDialogCancel>
+            <AlertDialogAction asChild>
+              <Button onClick={confirmDeleteChallenge} className="bg-destructive hover:bg-destructive/90 text-destructive-foreground neumorphic-btn">Excluir</Button>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

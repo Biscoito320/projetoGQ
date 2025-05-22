@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Award, CheckCircle2, ArrowRight, Clock, Zap, TrendingUp, Lightbulb, Star, Rocket, Target as TargetIcon } from "lucide-react";
+import { BookOpen, Award, CheckCircle2, ArrowRight, Clock, Zap, TrendingUp, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -9,53 +9,33 @@ const lessonTypeIcons = {
   "Introdução": Lightbulb,
   "Ação Prática": Zap,
   "Aprofundamento": TrendingUp,
-  "Desafio Criativo": Star,
-  "Missão Especial": Rocket,
   Default: BookOpen,
 };
 
 const lessonTypeStyles = {
   "Introdução": {
-    borderColor: "border-primary/50", 
-    textColor: "text-primary",
-    nodeColor: "bg-gradient-to-br from-primary to-accent", 
-    iconColor: "text-primary-foreground",
-    badgeBg: "bg-primary/15 text-primary border-primary/40"
+    bgGradient: "bg-gradient-to-br from-sky-400/20 to-blue-500/20",
+    borderColor: "border-sky-500/50",
+    textColor: "text-sky-700 dark:text-sky-400",
+    nodeColor: "bg-gradient-to-br from-sky-400 to-blue-500",
   },
   "Ação Prática": {
-    borderColor: "border-secondary/70", 
-    textColor: "text-secondary",
-    nodeColor: "bg-gradient-to-br from-secondary to-highlight", 
-    iconColor: "text-secondary-foreground",
-    badgeBg: "bg-secondary/15 text-secondary border-secondary/40"
+    bgGradient: "bg-gradient-to-br from-lime-400/20 to-green-500/20",
+    borderColor: "border-lime-500/50",
+    textColor: "text-lime-700 dark:text-lime-400",
+    nodeColor: "bg-gradient-to-br from-lime-400 to-green-500",
   },
   "Aprofundamento": {
-    borderColor: "border-blue-500/50", 
-    textColor: "text-blue-400",
-    nodeColor: "bg-gradient-to-br from-blue-500 to-blue-700",
-    iconColor: "text-white",
-    badgeBg: "bg-blue-500/15 text-blue-400 border-blue-500/40"
-  },
-   "Desafio Criativo": {
-    borderColor: "border-purple-500/50",
-    textColor: "text-purple-400",
-    nodeColor: "bg-gradient-to-br from-purple-500 to-pink-500",
-    iconColor: "text-white",
-    badgeBg: "bg-purple-500/15 text-purple-400 border-purple-500/40"
-  },
-  "Missão Especial": {
-    borderColor: "border-red-500/50",
-    textColor: "text-red-500",
-    nodeColor: "bg-gradient-to-br from-red-500 to-orange-600",
-    iconColor: "text-white",
-    badgeBg: "bg-red-500/15 text-red-400 border-red-500/40"
+    bgGradient: "bg-gradient-to-br from-amber-400/20 to-yellow-500/20",
+    borderColor: "border-amber-500/50",
+    textColor: "text-amber-700 dark:text-amber-400",
+    nodeColor: "bg-gradient-to-br from-amber-400 to-yellow-500",
   },
   Default: {
-    borderColor: "border-gray-500/50",
-    textColor: "text-gray-400",
-    nodeColor: "bg-gradient-to-br from-gray-500 to-gray-700",
-    iconColor: "text-white",
-    badgeBg: "bg-gray-500/15 text-gray-400 border-gray-500/40"
+    bgGradient: "bg-gradient-to-br from-slate-400/20 to-gray-500/20",
+    borderColor: "border-slate-500/50",
+    textColor: "text-slate-700 dark:text-slate-400",
+    nodeColor: "bg-gradient-to-br from-slate-400 to-gray-500",
   },
 };
 
@@ -63,79 +43,67 @@ const LessonNodeNew = ({ lesson, index, isCompleted, onLessonClick }) => {
   const NodeIcon = lessonTypeIcons[lesson.type] || lessonTypeIcons.Default;
   const styles = lessonTypeStyles[lesson.type] || lessonTypeStyles.Default;
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 50, rotate: index % 2 === 0 ? -3 : 3 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0,
-      rotate: 0,
-      transition: { type: "spring", stiffness: 90, damping: 12, delay: index * 0.12 }
-    }
-  };
-  
-  const alignmentClass = index % 2 === 0 
-    ? 'md:mr-auto md:pr-[calc(50%+2.5rem)]' 
-    : 'md:ml-auto md:pl-[calc(50%+2.5rem)] md:text-right';
-
   return (
     <motion.div
-      variants={cardVariants}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 100, delay: index * 0.12, duration: 0.6 }}
       className={cn(
-        "relative w-full md:w-auto",
-        alignmentClass
+        "relative lesson-node-card", // Added class for global hover
+        index % 2 === 0 ? 'md:pr-[calc(50%+1.75rem)]' : 'md:pl-[calc(50%+1.75rem)] md:text-right'
       )}
     >
       <div className={cn(
-        "lesson-node-icon-playful hidden md:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-20 shadow-lg",
-        styles.nodeColor,
-        isCompleted ? "completed scale-110 rotate-[15deg]" : "pending"
+        "hidden md:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full border-2 border-background items-center justify-center z-10 shadow-lg",
+        styles.nodeColor
         )}
       >
         {isCompleted ? (
-          <CheckCircle2 className={cn("h-6 w-6", styles.iconColor)} />
+          <CheckCircle2 className="h-7 w-7 text-white" />
         ) : (
-          <NodeIcon className={cn("h-5 w-5", styles.iconColor)} />
+          <NodeIcon className="h-6 w-6 text-white" />
         )}
       </div>
       
       <div 
         className={cn(
-          `lesson-node-card bg-card rounded-2xl p-5 border-2 transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group`,
+          `bg-card rounded-2xl p-6 border soft-shadow`,
           styles.borderColor,
-          isCompleted && "opacity-60 ring-2 ring-offset-2 ring-offset-background ring-secondary/80"
+          isCompleted && "ring-2 ring-offset-2 ring-offset-background ring-primary/70"
         )}
       >
         <div className={cn(`flex items-center gap-2.5 mb-3 flex-wrap`, index % 2 !== 0 && 'md:justify-end')}>
-          <span className={cn("text-xs font-semibold px-3 py-1 rounded-lg flex items-center shadow-sm border lowercase", styles.badgeBg)}>
-            <TargetIcon className="h-4 w-4 mr-1.5" />
-            {lesson.type}
-          </span>
-          <span className={cn("text-xs font-semibold px-3 py-1 rounded-lg flex items-center shadow-sm border lowercase", styles.badgeBg)}>
-            <Clock className="h-4 w-4 mr-1.5" />
+          <span className={cn("text-xs font-medium px-2.5 py-1 rounded-full flex items-center", styles.textColor, styles.bgGradient.replace('/20', '/15'))}>
+            <Clock className="h-3.5 w-3.5 mr-1.5" />
             {lesson.duration}
           </span>
-          <span className={cn("text-xs font-semibold px-3 py-1 rounded-lg flex items-center shadow-sm border lowercase", styles.badgeBg)}>
-            <Award className="h-4 w-4 mr-1.5" />
-            {lesson.points} XP
+          <span className={cn("text-xs font-medium px-2.5 py-1 rounded-full flex items-center", styles.textColor, styles.bgGradient.replace('/20', '/15'))}>
+            <Award className="h-3.5 w-3.5 mr-1.5" />
+            {lesson.points} pontos
           </span>
+          {isCompleted && (
+            <span className="text-xs font-medium bg-green-500/20 text-green-700 dark:text-green-400 px-2.5 py-1 rounded-full flex items-center">
+              <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />
+              Completado
+            </span>
+          )}
         </div>
         
-        <h3 className={cn("text-xl font-bold mb-2 lesson-title group-hover:text-highlight transition-colors", styles.textColor)}>{lesson.title}</h3>
-        <p className="text-muted-foreground text-sm mb-5 lesson-description leading-relaxed">
+        <h3 className="text-xl font-semibold mb-2 text-foreground">{lesson.title}</h3>
+        <p className="text-muted-foreground text-sm mb-5">
           {lesson.description}
         </p>
         
         <Button 
           onClick={() => onLessonClick(lesson)}
           className={cn(
-            "group genz-btn py-2.5 text-xs font-bold lesson-button",
-             isCompleted && "completed !bg-muted !text-muted-foreground hover:!bg-muted/80 !border !border-border !opacity-80 !text-foreground"
+            "group neumorphic-btn py-2.5 text-sm",
+            isCompleted ? "bg-muted text-muted-foreground hover:bg-muted/80" : cn(styles.nodeColor, "text-white hover:opacity-90")
           )}
           size="sm"
         >
-          {isCompleted ? "Revisar Missão" : "Começar Missão"}
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1.5" />
+          {isCompleted ? "Revisar Lição" : "Iniciar Lição"}
+          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </div>
     </motion.div>

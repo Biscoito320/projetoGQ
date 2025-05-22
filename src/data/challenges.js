@@ -2,7 +2,7 @@
 export const challenges = [
   {
     id: "c1",
-    title: "Workshop de Mudanças Climáticas",
+    title: "ENSINE ALGUEM SOBRE MUDANÇAS CLIMÁTICAS",
     description: "Organize um workshop educativo sobre mudanças climáticas em sua comunidade ou escola, focando na conscientização e ações práticas.",
     points: 100,
     category: "Educação ODS 13.3",
