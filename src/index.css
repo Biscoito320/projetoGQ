@@ -1,89 +1,93 @@
-
+/* Importa as diretivas base do Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Define variáveis CSS customizadas para temas claro e escuro */
 @layer base {
   :root {
-    --background: 210 100% 99%; /* Branco */
-    --foreground: 215 20% 27%; /* Cinza escuro azulado para texto */
+    /* Cores principais do tema claro */
+    --background: 210 100% 99%; /* Fundo branco */
+    --foreground: 215 20% 27%; /* Texto cinza escuro azulado */
     
-    --card: 0 0% 100%;
-    --card-foreground: 215 20% 27%;
+    --card: 0 0% 100%; /* Fundo de cartões */
+    --card-foreground: 215 20% 27%; /* Texto em cartões */
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 20% 27%;
+    --popover: 0 0% 100%; /* Fundo de popovers */
+    --popover-foreground: 215 20% 27%; /* Texto em popovers */
     
-    --primary: 140 60% 55%; /* Verde principal mais suave */
-    --primary-foreground: 0 0% 100%; /* Branco para texto sobre primário */
+    --primary: 140 60% 55%; /* Verde principal suave */
+    --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
     
     --secondary: 50 90% 60%; /* Amarelo secundário */
-    --secondary-foreground: 215 20% 27%; /* Cinza escuro para texto sobre secundário */
+    --secondary-foreground: 215 20% 27%; /* Texto escuro sobre secundário */
     
-    --muted: 220 15% 96%; /* Cinza muito claro para fundos sutis */
+    --muted: 220 15% 96%; /* Cinza claro para fundos sutis */
     --muted-foreground: 215 15% 45%; /* Cinza médio para texto silenciado */
     
-    --accent: 140 60% 75%; /* Verde mais claro para acentos */
-    --accent-foreground: 215 20% 27%;
+    --accent: 140 60% 75%; /* Verde claro para acentos */
+    --accent-foreground: 215 20% 27%; /* Texto escuro sobre acentos */
     
     --destructive: 0 70% 60%; /* Vermelho para ações destrutivas */
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 100%; /* Texto branco sobre destrutivo */
     
     --border: 220 15% 88%; /* Cinza claro para bordas */
-    --input: 220 15% 88%;
-    --ring: 140 60% 55%;
+    --input: 220 15% 88%; /* Cor de input */
+    --ring: 140 60% 55%; /* Cor de foco */
     
-    --radius: 0.75rem; /* Bordas mais arredondadas */
+    --radius: 0.75rem; /* Bordas arredondadas */
   }
  
   .dark {
-    /* Para manter a consistência, o modo escuro usará uma variação mais escura do tema claro,
-       mas mantendo a inspiração da imagem. A imagem de referência é predominantemente clara. */
-    --background: 215 25% 12%; /* Cinza muito escuro azulado */
-    --foreground: 220 15% 90%; /* Cinza muito claro para texto */
+    /* Tema escuro: variações mais escuras das cores acima */
+    --background: 0 0% 11%; /* Fundo cinza muito escuro azulado */
+    --foreground: 220 15% 90%; /* Texto cinza muito claro */
     
-    --card: 215 25% 16%;
-    --card-foreground: 220 15% 90%;
+    --card: 215 25% 16%; /* Fundo de cartões escuro */
+    --card-foreground: 220 15% 90%; /* Texto claro em cartões */
     
-    --popover: 215 25% 16%;
-    --popover-foreground: 220 15% 90%;
+    --popover: 215 25% 16%; /* Fundo de popovers escuro */
+    --popover-foreground: 220 15% 90%; /* Texto claro em popovers */
     
-    --primary: 140 60% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 140 60% 55%; /* Verde principal igual ao claro */
+    --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
     
-    --secondary: 50 90% 60%;
-    --secondary-foreground: 215 20% 27%;
+    --secondary: 50 90% 60%; /* Amarelo secundário igual ao claro */
+    --secondary-foreground: 215 20% 27%; /* Texto escuro sobre secundário */
     
-    --muted: 215 25% 20%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 215 25% 20%; /* Cinza escuro para fundos sutis */
+    --muted-foreground: 220 15% 65%; /* Cinza claro para texto silenciado */
     
-    --accent: 140 60% 75%;
-    --accent-foreground: 215 20% 27%;
+    --accent: 140 60% 75%; /* Verde claro para acentos */
+    --accent-foreground: 215 20% 27%; /* Texto escuro sobre acentos */
     
-    --destructive: 0 70% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 70% 60%; /* Vermelho para ações destrutivas */
+    --destructive-foreground: 0 0% 100%; /* Texto branco sobre destrutivo */
     
-    --border: 215 25% 25%;
-    --input: 215 25% 25%;
-    --ring: 140 60% 55%;
+    --border: 215 25% 25%; /* Cinza escuro para bordas */
+    --input: 215 25% 25%; /* Cor de input escura */
+    --ring: 140 60% 55%; /* Cor de foco */
   }
 }
 
+/* Aplica estilos base usando Tailwind e define fonte global */
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border; /* Aplica cor de borda padrão */
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'Inter', sans-serif; /* Fonte mais moderna e suave */
+    @apply bg-background text-foreground; /* Aplica fundo e cor do texto */
+    font-feature-settings: "rlig" 1, "calt" 1; /* Melhora tipografia */
+    font-family: 'Inter', sans-serif; /* Fonte moderna */
   }
 }
 
+/* Texto com gradiente de cor */
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
 }
 
+/* Padrão de fundo ecológico com gradientes radiais */
 .eco-pattern {
   background-image: 
     radial-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
@@ -92,10 +96,12 @@
   background-position: 0 0, 15px 15px;
 }
 
+/* Padrão de folha usando SVG embutido */
 .leaf-pattern {
    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='hsl(var(--primary))' fill-opacity='0.05'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' opacity='.5'/%3E%3Cpath d='M15 15h50v50H15V15zm20 20v10h10V35h-10zm-5-5h20v20H30V30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* Sombra suave para elementos (efeito neumórfico) */
 .soft-shadow {
   box-shadow: 
     5px 5px 10px hsl(var(--muted) / 0.7), 
@@ -104,45 +110,51 @@
     inset -1px -1px 2px hsl(var(--background) / 0.5);
 }
 
+/* Sombra suave interna */
 .soft-shadow-inset {
   box-shadow: 
     inset 5px 5px 10px hsl(var(--muted) / 0.7), 
     inset -5px -5px 10px hsl(var(--background) / 1);
 }
 
+/* Cartões de desafio, recompensa e lição: bordas arredondadas e transição suave */
 .challenge-card, .reward-card, .lesson-node-card {
   transition: all 0.3s ease;
   @apply rounded-xl border border-border/50;
 }
 
+/* Efeito de hover para cartões: eleva e adiciona sombra */
 .challenge-card:hover, .reward-card:hover, .lesson-node-card:hover {
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 8px 20px hsl(var(--muted) / 0.5);
 }
 
+/* Linha de conexão vertical para trilhas (ex: roadmap) */
 .trail-connector {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 3px; /* Thinner line */
+  width: 3px; /* Linha fina */
   background: linear-gradient(to bottom, hsl(var(--primary) / 0.7), hsl(var(--secondary) / 0.7));
   transform: translateX(-50%);
   z-index: -1;
 }
 
+/* Nó da trilha: garante que fique acima da linha */
 .trail-node {
   position: relative;
   z-index: 10;
 }
 
+/* Círculo colorido atrás do nó da trilha */
 .trail-node::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30px; /* Smaller node */
+  width: 30px; /* Nó menor */
   height: 30px;
   border-radius: 50%;
   background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
@@ -150,15 +162,19 @@
   z-index: -1;
 }
 
-/* Neumorphic button style adjustment, if needed. shadcn/ui buttons are quite flexible */
+/* Botão com estilo neumórfico usando Tailwind e sombras customizadas */
 .neumorphic-btn {
   @apply bg-background text-foreground rounded-lg px-6 py-3 font-semibold transition-all duration-200 ease-in-out;
   @apply soft-shadow;
 }
+
+/* Efeito de hover: remove sombra e move levemente para baixo */
 .neumorphic-btn:hover {
   @apply shadow-none;
   transform: translateY(1px);
 }
+
+/* Efeito de clique: sombra interna e move mais para baixo */
 .neumorphic-btn:active {
   @apply soft-shadow-inset;
   transform: translateY(2px);
