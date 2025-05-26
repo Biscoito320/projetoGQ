@@ -16,7 +16,7 @@
     --popover: 0 0% 100%; /* Fundo de popovers */
     --popover-foreground: 215 20% 27%; /* Texto em popovers */
     
-    --primary: 140 60% 55%; /* Verde principal suave */
+    --primary: 90 100% 60%; /* Verde principal suave */
     --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
     
     --secondary: 50 90% 60%; /* Amarelo secundário */
@@ -40,7 +40,7 @@
  
   .dark {
     /* Tema escuro: variações mais escuras das cores acima */
-    --background: 0 0% 11%; /* Fundo cinza muito escuro azulado */
+    --background: 165 90% 7%; /* Fundo cinza muito escuro azulado */
     --foreground: 220 15% 90%; /* Texto cinza muito claro */
     
     --card: 215 25% 16%; /* Fundo de cartões escuro */
@@ -49,7 +49,7 @@
     --popover: 215 25% 16%; /* Fundo de popovers escuro */
     --popover-foreground: 220 15% 90%; /* Texto claro em popovers */
     
-    --primary: 140 60% 55%; /* Verde principal igual ao claro */
+    --primary: 90 100% 60%; /* Verde principal igual ao claro */
     --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
     
     --secondary: 50 90% 60%; /* Amarelo secundário igual ao claro */
