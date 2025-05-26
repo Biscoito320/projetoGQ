@@ -50,7 +50,7 @@
     --popover-foreground: 220 15% 90%; /* Texto claro em popovers */
     
     --primary: 90 100% 60%; /* Verde principal igual ao claro */
-    --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
+    --primary-foreground: 0 0% 38%; /* Texto branco sobre primário */
     
     --secondary: 50 90% 60%; /* Amarelo secundário igual ao claro */
     --secondary-foreground: 215 20% 27%; /* Texto escuro sobre secundário */
