@@ -7,6 +7,7 @@ import { useUser } from "@/context/UserContext";
 import novaImagem from '../assets/homepage.png';
 import imagemComunidade from '../assets/exp.png';
 
+
 const FeatureCard = ({ icon: Icon, title, description, delay, variants }) => (
   <motion.div
     variants={variants}
@@ -233,7 +234,7 @@ const HomePage = () => {
                 </Button>
               </div>
               <div className="order-1 md:order-2 rounded-2xl overflow-hidden soft-shadow">
-                 <img  className="w-full h-auto object-cover aspect-video" alt="Grupo de pessoas sorrindo e colaborando em um projeto comunitário ao ar livre." src="https://images.unsplash.com/photo-1682009562551-419cbd18091b" />
+                 <img src={novaImagem} alt="Descrição" />
               </div>
             </div>
              <motion.div 

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +50,9 @@ const ProfilePage = () => {
   const pointsInCurrentLevel = user.points - pointsForCurrentLevel;
   const progressToNextLevel = Math.max(0, Math.min(100, (pointsInCurrentLevel / 100) * 100));
 
-  const completedChallenges = allChallenges.filter(c => user.completedChallenges.includes(c.id));
+  const completedChallenges = allChallenges.filter(
+    c => user.completedChallenges.includes(c.id)
+  );
   const completedLessons = allLessons.filter(l => user.completedLessons.includes(l.id));
   const inventoryItems = user.inventory.map(item => ({ ...item, ...allRewards.find(r => r.id === item.id) }));
 
