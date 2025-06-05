@@ -12,11 +12,8 @@ const RewardCard = ({ reward, onRewardClick, hasPurchased, categoryIcon: Categor
       whileHover={{ scale: 1.03, boxShadow: "0 10px 20px hsla(var(--card-foreground),0.08)" }}
       className={`reward-card bg-card rounded-xl overflow-hidden border border-border shadow-sm flex flex-col ${colorClass}`}
     >
-      <div
-        className="relative h-48 category-icon-container flex items-center justify-center"
-        style={{ background: "var(--category-color-pastel)" }}
-      >
-        <motion.div
+      <div className="relative h-48 category-icon-container flex items-center justify-center">
+         <motion.div
           initial={{ scale: 0.8, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.2 }}
@@ -62,5 +59,3 @@ const RewardCard = ({ reward, onRewardClick, hasPurchased, categoryIcon: Categor
 };
 
 export default RewardCard;
-
-<RewardCard reward={reward} colorClass={`category-color-${reward.categoryKey}-rewards`} />

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import imgNovaImpacto from '../assets.img/imgNovaImpacto.png'; // ajuste o caminho conforme sua estrutura
+import novaImagem from "../assets/ods13.png"; // Imagem representativa do impacto
 
 const ImpactSection = ({ navigate }) => {
   const impactStats = [
@@ -49,11 +49,8 @@ const ImpactSection = ({ navigate }) => {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
-              <img
-                className="w-full h-auto"
-                alt="Descrição da nova imagem"
-                src={imgNovaImpacto}
-              />
+              <img  className="w-full h-auto" alt="Gráfico estilizado mostrando crescimento de impacto ambiental positivo." 
+              src={novaImagem} />
             </div>
           </motion.div>
         </div>

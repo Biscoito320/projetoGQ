@@ -15,46 +15,38 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-
-// Componente para cada item de navegação (link do menu)
 const NavLinkItem = ({ to, icon: Icon, label, currentPath, onClick }) => (
   <Link
     to={to}
     onClick={onClick}
     className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
       currentPath === to
-        ? "bg-primary/10 text-primary" // Destaca o link ativo
+        ? "bg-primary/10 text-primary"
         : "text-muted-foreground hover:bg-muted hover:text-foreground"
     }`}
   >
-    <Icon className="h-5 w-5" /> {/* Ícone do link */}
+    <Icon className="h-5 w-5" />
     <span>{label}</span>
   </Link>
 );
 
-// Componente principal da barra de navegação
+
 const Navbar = () => {
-  // Estado para controlar o menu mobile aberto/fechado
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useUser();
+  const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Hooks de contexto e navegação
-  const { user, logout } = useUser(); // Usuário logado e função de logout
-  const { theme, toggleTheme } = useTheme(); // Tema atual e função para alternar
-  const location = useLocation(); // Caminho atual da página
-  const navigate = useNavigate(); // Função para navegar entre páginas
-
-  // Funções para abrir/fechar menu mobile
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
-  // Função para logout do usuário
   const handleLogout = () => {
     logout();
     navigate("/");
     closeMenu();
   };
 
-  // Links principais do menu
   const navLinks = [
     { name: "Início", path: "/", icon: Home },
     { name: "Desafios", path: "/desafios", icon: Shield },
@@ -63,10 +55,8 @@ const Navbar = () => {
   ];
 
   return (
-    // Cabeçalho fixo no topo, com fundo semi-transparente e efeito de blur
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo e nome do projeto, clicável para ir à home */}
         <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
           <img 
             src="https://storage.googleapis.com/hostinger-horizons-assets-prod/1ac13058-3f14-4aca-aef9-78cb864d901e/3af5a5d2ab092d11e861d817d21e2f7a.png" 
@@ -76,7 +66,6 @@ const Navbar = () => {
           <span className="font-bold text-xl gradient-text">ClimaQuest</span>
         </Link>
 
-        {/* Menu de navegação (visível apenas em telas médias ou maiores) */}
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <NavLinkItem 
@@ -89,9 +78,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Área de ações à direita: alternância de tema, usuário, login/logout, menu mobile */}
         <div className="flex items-center gap-3">
-          {/* Botão para alternar entre tema claro e escuro, com tooltip */}
           <TooltipProvider delayDuration={100}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -105,15 +92,12 @@ const Navbar = () => {
             </Tooltip>
           </TooltipProvider>
 
-          {/* Se o usuário estiver logado, mostra pontos, avatar e botão de sair */}
           {user ? (
             <div className="flex items-center gap-3">
-               {/* Pontuação do usuário */}
                <div className="flex items-center gap-1 text-sm font-medium text-primary p-2 rounded-full bg-primary/10 border border-primary/20">
                   <Gem className="h-4 w-4"/>
                   <span>{user.points}</span>
                </div>
-               {/* Avatar do usuário com tooltip para perfil */}
                <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -131,7 +115,6 @@ const Navbar = () => {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              {/* Botão de logout com tooltip */}
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -146,7 +129,6 @@ const Navbar = () => {
               </TooltipProvider>
             </div>
           ) : (
-            // Se não estiver logado, mostra botões de Entrar e Cadastrar (desktop)
             <div className="hidden md:flex items-center gap-2">
               <Button variant="ghost" onClick={() => navigate("/login")}>
                 Entrar
@@ -154,7 +136,6 @@ const Navbar = () => {
               <Button onClick={() => navigate("/cadastro")}>Cadastrar</Button>
             </div>
           )}
-          {/* Botão para abrir/fechar menu mobile */}
           <Button
             variant="ghost"
             size="icon"
@@ -166,7 +147,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Menu mobile (aparece apenas quando isOpen é true) */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -176,7 +156,6 @@ const Navbar = () => {
           className="md:hidden border-t"
         >
           <div className="container py-4 flex flex-col gap-4">
-            {/* Se o usuário estiver logado, mostra avatar e pontos no menu mobile */}
             {user && (
               <Link to="/perfil" onClick={closeMenu} className="flex items-center gap-3 p-3 bg-muted rounded-lg">
                 <Avatar className="h-10 w-10 border-2 border-primary">
@@ -195,7 +174,6 @@ const Navbar = () => {
               </Link>
             )}
 
-            {/* Links de navegação no menu mobile */}
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <NavLinkItem
@@ -208,7 +186,6 @@ const Navbar = () => {
                 />
               ))}
 
-              {/* Opções extras para usuário logado no menu mobile */}
               {user ? (
                 <>
                   <Link
@@ -233,7 +210,6 @@ const Navbar = () => {
                   </Button>
                 </>
               ) : (
-                // Botões de login/cadastro no menu mobile
                 <div className="flex flex-col gap-2 mt-2">
                   <Button onClick={() => { navigate("/login"); closeMenu(); }}>
                     Entrar
@@ -254,4 +230,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; // Exporta o componente para uso em outras partes do projeto
+export default Navbar;

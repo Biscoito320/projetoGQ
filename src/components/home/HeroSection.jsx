@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import NovaImagem from '../assets.img/imgHome.png'; // Importando a nova imagem
+import novaImagem from "../assets/homepage.png"; // Importando a nova imagem
 
 const HeroSection = ({ user, navigate }) => {
   return (
@@ -46,8 +46,13 @@ const HeroSection = ({ user, navigate }) => {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-primary/20">
-              <img  src={NovaImagem} alt="Descrição"/>
-             
+              <img  className="w-full h-auto" alt="Pessoas plantando árvores em um parque ensolarado, simbolizando ação climática positiva." 
+              src={novaImagem}/>
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <p className="text-sm font-medium bg-background/80 backdrop-blur-sm p-3 rounded-lg inline-block">
+                  Juntos podemos fazer a diferença para o ODS 13.3 - Educação e conscientização sobre mudanças climáticas
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>

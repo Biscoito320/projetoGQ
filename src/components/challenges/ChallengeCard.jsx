@@ -12,10 +12,7 @@ const ChallengeCard = ({ challenge, onChallengeClick, isCompleted, categoryIcon:
       whileHover={{ y: -5, boxShadow: "0 10px 15px -3px hsla(var(--card-foreground),0.05), 0 4px 6px -2px hsla(var(--card-foreground),0.03)" }}
       className={`challenge-card bg-card rounded-xl overflow-hidden border border-border shadow-sm flex flex-col ${colorClass}`}
     >
-      <div
-        className="relative h-48 category-icon-container flex items-center justify-center"
-        style={{ background: "var(--category-color-pastel)" }}
-      >
+      <div className="relative h-48 category-icon-container flex items-center justify-center">
         <motion.div
           initial={{ scale: 0.8, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 1 }}
