@@ -1,8 +1,7 @@
-
 export const lessons = [
   {
     id: "l1",
-    title: "SJCHBHRCBRJHCEJRCEJRHC",
+    title: "Introdução às Mudanças Climáticas",
     description: "Entenda os conceitos básicos sobre mudanças climáticas, efeito estufa e aquecimento global.",
     points: 30,
     duration: "20 minutos",

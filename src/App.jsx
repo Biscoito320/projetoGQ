@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
+import { useTheme } from "@/hooks/useTheme";
 
 // Pages
 import HomePage from "@/pages/HomePage";
@@ -12,6 +12,10 @@ import ShopPage from "@/pages/ShopPage";
 import ProfilePage from "@/pages/ProfilePage";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
+import OdsPage from "@/pages/OdsPage";
+import MissionPage from "@/pages/MissionPage";
+import ContactPage from "@/pages/ContactPage";
+import AboutGreenifyPage from "@/pages/AboutGreenifyPage"; // Nova página
 
 // Components
 import Navbar from "@/components/Navbar";
@@ -20,17 +24,42 @@ import Footer from "@/components/Footer";
 // Context
 import { UserProvider } from "@/context/UserContext";
 
-function App() {
+const PageWrapper = ({ children }) => {
+  const location = useLocation();
+  return (
+    <motion.div
+      key={location.pathname}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+function AppContent() {
+  const { theme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
-
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    document.title = "ClimaQuest by Greenify";
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+  }, [theme]);
+
 
   if (isLoading) {
     return (
@@ -68,13 +97,17 @@ function App() {
           <main className="flex-grow">
             <AnimatePresence mode="wait">
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/desafios" element={<ChallengesPage />} />
-                <Route path="/aprender" element={<LearningTrailPage />} />
-                <Route path="/loja" element={<ShopPage />} />
-                <Route path="/perfil" element={<ProfilePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/cadastro" element={<RegisterPage />} />
+                <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+                <Route path="/desafios" element={<PageWrapper><ChallengesPage /></PageWrapper>} />
+                <Route path="/trilha" element={<PageWrapper><LearningTrailPage /></PageWrapper>} />
+                <Route path="/loja" element={<PageWrapper><ShopPage /></PageWrapper>} />
+                <Route path="/perfil" element={<PageWrapper><ProfilePage /></PageWrapper>} />
+                <Route path="/login" element={<PageWrapper><LoginPage /></PageWrapper>} />
+                <Route path="/cadastro" element={<PageWrapper><RegisterPage /></PageWrapper>} />
+                <Route path="/ods-13-3" element={<PageWrapper><OdsPage /></PageWrapper>} />
+                <Route path="/nossa-missao" element={<PageWrapper><MissionPage /></PageWrapper>} />
+                <Route path="/contato" element={<PageWrapper><ContactPage /></PageWrapper>} /> 
+                <Route path="/sobre-greenify" element={<PageWrapper><AboutGreenifyPage /></PageWrapper>} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </AnimatePresence>
@@ -86,5 +119,11 @@ function App() {
     </UserProvider>
   );
 }
+
+
+function App() {
+  return <AppContent />;
+}
+
 
 export default App;

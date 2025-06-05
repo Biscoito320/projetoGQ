@@ -3,179 +3,362 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Define variáveis CSS customizadas para temas claro e escuro */
+/* Define as variáveis CSS para temas claro e escuro */
 @layer base {
   :root {
     /* Cores principais do tema claro */
     --background: 210 100% 99%; /* Fundo branco */
     --foreground: 215 20% 27%; /* Texto cinza escuro azulado */
-    
     --card: 0 0% 100%; /* Fundo de cartões */
     --card-foreground: 215 20% 27%; /* Texto em cartões */
-    
     --popover: 0 0% 100%; /* Fundo de popovers */
     --popover-foreground: 215 20% 27%; /* Texto em popovers */
-    
     --primary: 89 100% 38%; /* Verde principal suave */
     --primary-foreground: 0 0% 100%; /* Texto branco sobre primário */
-    
     --secondary: 50 90% 60%; /* Amarelo secundário */
     --secondary-foreground: 215 20% 27%; /* Texto escuro sobre secundário */
-    
     --muted: 220 15% 96%; /* Cinza claro para fundos sutis */
     --muted-foreground: 215 15% 45%; /* Cinza médio para texto silenciado */
-    
     --accent: 140 60% 75%; /* Verde claro para acentos */
     --accent-foreground: 215 20% 27%; /* Texto escuro sobre acentos */
-    
     --destructive: 0 70% 60%; /* Vermelho para ações destrutivas */
     --destructive-foreground: 0 0% 100%; /* Texto branco sobre destrutivo */
-    
     --border: 220 15% 88%; /* Cinza claro para bordas */
     --input: 220 15% 88%; /* Cor de input */
     --ring: 140 60% 55%; /* Cor de foco */
-    
     --radius: 0.75rem; /* Bordas arredondadas */
+
+    /* Cores para categorias de desafios */
+    --category-energia-sustentavel: 48 100% 50%;   /* Amarelo vibrante */
+    --category-economia-agua: 200 100% 50%;        /* Azul vibrante */
+    --category-reducao-residuos: 25 100% 50%;      /* Laranja vibrante */
+    --category-mobilidade-verde: 160 100% 35%;     /* Verde vibrante */
+    --category-reflorestamento-natureza: 100 80% 35%; /* Verde escuro vibrante */
+    --category-consumo-consciente: 280 100% 60%;   /* Roxo vibrante */
+    --category-educacao-ambiental: 240 100% 50%;   /* Azul índigo vibrante */
+
+    /* Cores para categorias de recompensas */
+    --category-produtos-sustentaveis-rewards: 15 100% 55%;   /* Coral vibrante */
+    --category-jardinagem-rewards: 290 100% 60%;             /* Roxo açaí vibrante */
+    --category-educacao-rewards: 220 100% 55%;               /* Azul vibrante */
+    --category-bem-estar-rewards: 30 100% 50%;               /* Laranja vibrante */
+    --category-impacto-ambiental-rewards: 190 100% 45%;      /* Azul ciano vibrante */
+    --category-vestuario-rewards: 320 100% 60%;              /* Magenta vibrante */
+    --category-default: 220 10% 50%;                         /* Cinza médio */
   }
- 
+
   .dark {
     /* Tema escuro: variações mais escuras das cores acima */
-    --background: 165 90% 7%; /* Fundo cinza muito escuro azulado */
-    --foreground: 220 15% 90%; /* Texto cinza muito claro */
-    
+    --background: 165 90% 7%; /* Fundo escuro */
+    --foreground: 220 15% 90%; /* Texto claro */
     --card: 215 25% 16%; /* Fundo de cartões escuro */
     --card-foreground: 220 15% 90%; /* Texto claro em cartões */
-    
     --popover: 215 25% 16%; /* Fundo de popovers escuro */
     --popover-foreground: 220 15% 90%; /* Texto claro em popovers */
-    
-    --primary: 90 100% 60%; /* Verde principal igual ao claro */
-    --primary-foreground: 0 0% 38%; /* Texto branco sobre primário */
-    
-    --secondary: 50 90% 60%; /* Amarelo secundário igual ao claro */
+    --primary: 90 100% 60%; /* Verde principal */
+    --primary-foreground: 0 0% 38%; /* Texto escuro sobre primário */
+    --secondary: 50 90% 60%; /* Amarelo secundário */
     --secondary-foreground: 215 20% 27%; /* Texto escuro sobre secundário */
-    
     --muted: 215 25% 20%; /* Cinza escuro para fundos sutis */
     --muted-foreground: 220 15% 65%; /* Cinza claro para texto silenciado */
-    
     --accent: 140 60% 75%; /* Verde claro para acentos */
     --accent-foreground: 215 20% 27%; /* Texto escuro sobre acentos */
-    
     --destructive: 0 70% 60%; /* Vermelho para ações destrutivas */
     --destructive-foreground: 0 0% 100%; /* Texto branco sobre destrutivo */
-    
     --border: 215 25% 25%; /* Cinza escuro para bordas */
     --input: 215 25% 25%; /* Cor de input escura */
     --ring: 140 60% 55%; /* Cor de foco */
+
+    /* Cores para categorias de desafios no tema escuro */
+    --category-energia-sustentavel: 54 100% 65%;   /* Amarelo neon */
+    --category-economia-agua: 190 100% 65%;        /* Azul neon */
+    --category-reducao-residuos: 40 100% 60%;      /* Laranja neon */
+    --category-mobilidade-verde: 150 100% 50%;     /* Verde neon */
+    --category-reflorestamento-natureza: 120 100% 45%; /* Verde escuro neon */
+    --category-consumo-consciente: 290 100% 70%;   /* Roxo neon */
+    --category-educacao-ambiental: 210 100% 65%;   /* Azul índigo neon */
+
+    /* Cores para categorias de recompensas no tema escuro */
+    --category-produtos-sustentaveis-rewards: 30 100% 65%;   /* Coral neon */
+    --category-jardinagem-rewards: 300 100% 70%;             /* Roxo açaí neon */
+    --category-educacao-rewards: 220 100% 65%;               /* Azul neon */
+    --category-bem-estar-rewards: 45 100% 60%;               /* Laranja neon */
+    --category-impacto-ambiental-rewards: 180 100% 60%;      /* Azul ciano neon */
+    --category-vestuario-rewards: 320 100% 70%;              /* Magenta neon */
+    --category-default: 220 100% 70%;                        /* Cinza azulado neon */
   }
 }
 
-/* Aplica estilos base usando Tailwind e define fonte global */
+/* Aplica a cor da borda padrão a todos os elementos */
 @layer base {
   * {
-    @apply border-border; /* Aplica cor de borda padrão */
+    @apply border-border;
   }
   body {
-    @apply bg-background text-foreground; /* Aplica fundo e cor do texto */
-    font-feature-settings: "rlig" 1, "calt" 1; /* Melhora tipografia */
-    font-family: 'Inter', sans-serif; /* Fonte moderna */
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', sans-serif;
   }
 }
 
-/* Texto com gradiente de cor */
+/* Texto com gradiente */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
 }
 
-/* Padrão de fundo ecológico com gradientes radiais */
-.eco-pattern {
-  background-image: 
-    radial-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
-    radial-gradient(hsl(var(--secondary) / 0.05) 1px, transparent 1px);
-  background-size: 30px 30px, 30px 30px;
-  background-position: 0 0, 15px 15px;
+/* Remove padrões de fundo */
+.eco-pattern, .leaf-pattern {
+  background-image: none;
 }
 
-/* Padrão de folha usando SVG embutido */
-.leaf-pattern {
-   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='hsl(var(--primary))' fill-opacity='0.05'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' opacity='.5'/%3E%3Cpath d='M15 15h50v50H15V15zm20 20v10h10V35h-10zm-5-5h20v20H30V30z'/%3E%3C/g%3E%3C/svg%3E");
+/* Estilos do mapa da trilha de aprendizado */
+.learning-trail-map {
+  position: relative;
+  padding: 2rem 0;
+  max-width: 900px; /* Limita a largura máxima */
+  margin: 0 auto; /* Centraliza */
 }
 
-/* Sombra suave para elementos (efeito neumórfico) */
-.soft-shadow {
-  box-shadow: 
-    5px 5px 10px hsl(var(--muted) / 0.7), 
-    -5px -5px 10px hsl(var(--background) / 1),
-    inset 1px 1px 2px hsl(var(--muted) / 0.3),
-    inset -1px -1px 2px hsl(var(--background) / 0.5);
-}
-
-/* Sombra suave interna */
-.soft-shadow-inset {
-  box-shadow: 
-    inset 5px 5px 10px hsl(var(--muted) / 0.7), 
-    inset -5px -5px 10px hsl(var(--background) / 1);
-}
-
-/* Cartões de desafio, recompensa e lição: bordas arredondadas e transição suave */
-.challenge-card, .reward-card, .lesson-node-card {
-  transition: all 0.3s ease;
-  @apply rounded-xl border border-border/50;
-}
-
-/* Efeito de hover para cartões: eleva e adiciona sombra */
-.challenge-card:hover, .reward-card:hover, .lesson-node-card:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 8px 20px hsl(var(--muted) / 0.5);
-}
-
-/* Linha de conexão vertical para trilhas (ex: roadmap) */
-.trail-connector {
+/* Caminho vertical da trilha */
+.trail-path {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 3px; /* Linha fina */
-  background: linear-gradient(to bottom, hsl(var(--primary) / 0.7), hsl(var(--secondary) / 0.7));
+  width: 8px; /* Espessura do caminho */
+  background-color: hsl(var(--muted));
+  border-radius: 4px;
   transform: translateX(-50%);
-  z-index: -1;
+  z-index: 1;
 }
 
-/* Nó da trilha: garante que fique acima da linha */
-.trail-node {
+/* Progresso do caminho (preenchimento) */
+.trail-path-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent))); /* Gradiente */
+  border-radius: 4px;
+  z-index: 2;
+  height: 0%; 
+  /* transition: height 1s cubic-bezier(0.65, 0, 0.35, 1); */
+}
+
+/* Container de cada milestone (etapa) */
+.trail-milestone {
   position: relative;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem; /* Espaçamento entre milestones */
 }
 
-/* Círculo colorido atrás do nó da trilha */
-.trail-node::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30px; /* Nó menor */
-  height: 30px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
-  box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
-  z-index: -1;
+/* Conteúdo da milestone */
+.trail-milestone-content {
+  @apply bg-card p-6 rounded-xl shadow-xl border border-border/80 transition-all duration-300 hover:shadow-2xl;
+  width: calc(50% - 4rem); /* Largura ajustada */
+  transform-origin: center;
 }
 
-/* Botão com estilo neumórfico usando Tailwind e sombras customizadas */
-.neumorphic-btn {
-  @apply bg-background text-foreground rounded-lg px-6 py-3 font-semibold transition-all duration-200 ease-in-out;
-  @apply soft-shadow;
+/* Alinhamento para milestones à esquerda */
+.trail-milestone.left .trail-milestone-content {
+  margin-right: auto;
+  text-align: right;
+}
+.trail-milestone.left .milestone-info {
+  justify-content: flex-end;
 }
 
-/* Efeito de hover: remove sombra e move levemente para baixo */
-.neumorphic-btn:hover {
-  @apply shadow-none;
-  transform: translateY(1px);
+/* Alinhamento para milestones à direita */
+.trail-milestone.right .trail-milestone-content {
+  margin-left: auto;
+  text-align: left;
+}
+.trail-milestone.right .milestone-info {
+  justify-content: flex-start;
 }
 
-/* Efeito de clique: sombra interna e move mais para baixo */
-.neumorphic-btn:active {
-  @apply soft-shadow-inset;
-  transform: translateY(2px);
+/* Nó visual da milestone */
+.milestone-node {
+  @apply rounded-full flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  width: 60px; /* Tamanho do nó */
+  height: 60px;
+  border: 5px solid hsl(var(--background)); 
+  background-color: hsl(var(--muted));
+  box-shadow: 0 4px 12px hsla(var(--foreground), 0.1);
+  transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Nó completado */
+.milestone-node.completed {
+  background-color: hsl(var(--primary)); 
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 0 20px hsla(var(--primary), 0.5);
+}
+
+/* Nó ativo */
+.milestone-node.active {
+  background-color: hsl(var(--secondary)); 
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 0 25px hsla(var(--secondary), 0.6);
+}
+
+/* Nó bloqueado */
+.milestone-node.locked {
+  background-color: hsl(var(--muted) / 0.7);
+  border-color: hsl(var(--muted));
+}
+
+/* Ícone dentro do nó */
+.milestone-node .milestone-node-icon {
+  color: hsl(var(--muted-foreground)); 
+  transition: color 0.3s ease;
+}
+.milestone-node.completed .milestone-node-icon {
+  color: hsl(var(--primary-foreground));
+}
+.milestone-node.active .milestone-node-icon {
+  color: hsl(var(--secondary-foreground));
+}
+.milestone-node.locked .milestone-node-icon {
+  color: hsl(var(--muted-foreground) / 0.6);
+}
+
+/* Informações da milestone */
+.milestone-info {
+  @apply flex items-center gap-2.5;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .trail-path {
+    left: 30px; /* Ajusta posição */
+    transform: translateX(0);
+  }
+  .trail-milestone-content {
+    width: calc(100% - 60px);
+    margin-left: 60px; 
+    text-align: left;
+  }
+  .trail-milestone.left .trail-milestone-content,
+  .trail-milestone.right .trail-milestone-content {
+    margin-right: 0;
+    margin-left: 60px;
+    text-align: left;
+  }
+  .trail-milestone.left .milestone-info,
+  .trail-milestone.right .milestone-info {
+    justify-content: flex-start;
+  }
+  .milestone-node {
+    left: 30px;
+    /* Mantém o transform */
+  }
+}
+
+/* Distintivo de nível */
+.level-badge {
+  @apply px-3 py-1 text-xs font-bold rounded-full inline-flex items-center gap-1;
+}
+
+/* Cores para categorias de desafios e recompensas usando variáveis CSS */
+.category-color-energia-sustentavel { --category-color: hsl(var(--category-energia-sustentavel)); --category-icon-bg: hsla(var(--category-energia-sustentavel), 0.15); }
+.category-color-economia-agua { --category-color: hsl(var(--category-economia-agua)); --category-icon-bg: hsla(var(--category-economia-agua), 0.15); }
+.category-color-reducao-residuos { --category-color: hsl(var(--category-reducao-residuos)); --category-icon-bg: hsla(var(--category-reducao-residuos), 0.15); }
+.category-color-mobilidade-verde { --category-color: hsl(var(--category-mobilidade-verde)); --category-icon-bg: hsla(var(--category-mobilidade-verde), 0.15); }
+.category-color-reflorestamento-natureza { --category-color: hsl(var(--category-reflorestamento-natureza)); --category-icon-bg: hsla(var(--category-reflorestamento-natureza), 0.15); }
+.category-color-consumo-consciente { --category-color: hsl(var(--category-consumo-consciente)); --category-icon-bg: hsla(var(--category-consumo-consciente), 0.15); }
+.category-color-educacao-ambiental { --category-color: hsl(var(--category-educacao-ambiental)); --category-icon-bg: hsla(var(--category-educacao-ambiental), 0.15); }
+
+.category-color-produtos-sustentaveis-rewards { --category-color: hsl(var(--category-produtos-sustentaveis-rewards)); --category-icon-bg: hsla(var(--category-produtos-sustentaveis-rewards), 0.15); }
+.category-color-jardinagem-rewards { --category-color: hsl(var(--category-jardinagem-rewards)); --category-icon-bg: hsla(var(--category-jardinagem-rewards), 0.15); }
+.category-color-educacao-rewards { --category-color: hsl(var(--category-educacao-rewards)); --category-icon-bg: hsla(var(--category-educacao-rewards), 0.15); }
+.category-color-bem-estar-rewards { --category-color: hsl(var(--category-bem-estar-rewards)); --category-icon-bg: hsla(var(--category-bem-estar-rewards), 0.15); }
+.category-color-impacto-ambiental-rewards { --category-color: hsl(var(--category-impacto-ambiental-rewards)); --category-icon-bg: hsla(var(--category-impacto-ambiental-rewards), 0.15); }
+.category-color-vestuario-rewards { --category-color: hsl(var(--category-vestuario-rewards)); --category-icon-bg: hsla(var(--category-vestuario-rewards), 0.15); }
+.category-color-default { --category-color: hsl(var(--category-default)); --category-icon-bg: hsla(var(--category-default), 0.15); }
+
+/* Tons pastel para tema claro */
+.category-color-energia-sustentavel { --category-color-pastel: hsl(48, 100%, 85%); }
+.category-color-economia-agua { --category-color-pastel: hsl(200, 100%, 85%); }
+.category-color-reducao-residuos { --category-color-pastel: hsl(25, 100%, 85%); }
+.category-color-mobilidade-verde { --category-color-pastel: hsl(160, 100%, 80%); }
+.category-color-reflorestamento-natureza { --category-color-pastel: hsl(100, 80%, 80%); }
+.category-color-consumo-consciente { --category-color-pastel: hsl(280, 100%, 90%); }
+.category-color-educacao-ambiental { --category-color-pastel: hsl(240, 100%, 85%); }
+
+/* Tons pastel para tema escuro */
+@layer base {
+  .dark {
+    .category-color-energia-sustentavel { --category-color-pastel: hsl(48, 70%, 22%); }
+    .category-color-economia-agua { --category-color-pastel: hsl(200, 70%, 22%); }
+    .category-color-reducao-residuos { --category-color-pastel: hsl(25, 70%, 18%); }
+    .category-color-mobilidade-verde { --category-color-pastel: hsl(160, 60%, 16%); }
+    .category-color-reflorestamento-natureza { --category-color-pastel: hsl(100, 50%, 16%); }
+    .category-color-consumo-consciente { --category-color-pastel: hsl(280, 60%, 22%); }
+    .category-color-educacao-ambiental { --category-color-pastel: hsl(240, 60%, 20%); }
+  }
+}
+
+/* Tons pastel para recompensas no tema claro */
+.category-color-produtos-sustentaveis-rewards { --category-color-pastel: hsl(30, 100%, 90%); }
+.category-color-jardinagem-rewards { --category-color-pastel: hsl(290, 100%, 92%); }
+.category-color-educacao-rewards { --category-color-pastel: hsl(220, 100%, 90%); }
+.category-color-bem-estar-rewards { --category-color-pastel: hsl(45, 100%, 88%); }
+.category-color-impacto-ambiental-rewards { --category-color-pastel: hsl(180, 100%, 88%); }
+.category-color-vestuario-rewards { --category-color-pastel: hsl(320, 100%, 92%); }
+.category-color-default { --category-color-pastel: hsl(220, 10%, 92%); }
+
+/* Tons pastel para recompensas no tema escuro */
+@layer base {
+  .dark {
+    .category-color-produtos-sustentaveis-rewards { --category-color-pastel: hsl(30, 70%, 22%); }
+    .category-color-jardinagem-rewards { --category-color-pastel: hsl(290, 70%, 24%); }
+    .category-color-educacao-rewards { --category-color-pastel: hsl(220, 70%, 22%); }
+    .category-color-bem-estar-rewards { --category-color-pastel: hsl(45, 70%, 20%); }
+    .category-color-impacto-ambiental-rewards { --category-color-pastel: hsl(180, 70%, 20%); }
+    .category-color-vestuario-rewards { --category-color-pastel: hsl(320, 70%, 24%); }
+    .category-color-default { --category-color-pastel: hsl(220, 10%, 24%); }
+  }
+}
+
+/* Aplica as cores de categoria nos ícones e badges de desafios/recompensas */
+.challenge-card .category-icon-container, .reward-card .category-icon-container {
+  /* background-color: var(--category-icon-bg); */
+}
+.challenge-card .category-icon-element, .reward-card .category-icon-element {
+  color: var(--category-color);
+}
+.challenge-card .category-badge, .reward-card .category-badge {
+  background-color: var(--category-color);
+  color: hsl(var(--primary-foreground)); 
+}
+.challenge-details-dialog .category-icon-container, .reward-details-dialog .category-icon-container {
+  background-color: var(--category-icon-bg);
+}
+.challenge-details-dialog .category-icon-element, .reward-details-dialog .category-icon-element {
+  color: var(--category-color);
+}
+
+/* Tons escuros para parte de baixo do cartão - tema claro */
+.category-color-produtos-sustentaveis-rewards { --category-color-dark: hsl(30, 100%, 60%); }
+.category-color-jardinagem-rewards { --category-color-dark: hsl(290, 100%, 62%); }
+.category-color-educacao-rewards { --category-color-dark: hsl(220, 100%, 60%); }
+.category-color-bem-estar-rewards { --category-color-dark: hsl(45, 100%, 58%); }
+.category-color-impacto-ambiental-rewards { --category-color-dark: hsl(180, 100%, 58%); }
+.category-color-vestuario-rewards { --category-color-dark: hsl(320, 100%, 62%); }
+.category-color-default { --category-color-dark: hsl(220, 10%, 62%); }
+
+/* Tons escuros para parte de baixo do cartão - tema escuro */
+@layer base {
+  .dark {
+    .category-color-produtos-sustentaveis-rewards { --category-color-dark: hsl(30, 70%, 18%); }
+    .category-color-jardinagem-rewards { --category-color-dark: hsl(290, 70%, 20%); }
+    .category-color-educacao-rewards { --category-color-dark: hsl(220, 70%, 18%); }
+    .category-color-bem-estar-rewards { --category-color-dark: hsl(45, 70%, 16%); }
+    .category-color-impacto-ambiental-rewards { --category-color-dark: hsl(180, 70%, 16%); }
+    .category-color-vestuario-rewards { --category-color-dark: hsl(320, 70%, 20%); }
+    .category-color-default { --category-color-dark: hsl(220, 10%, 20%); }
+  }
 }
