@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Leaf, Zap, TrendingUp, Users, Target } from "lucide-react";
+import novaImagem from "../img/equipe.png"; // Imagem representativa da Greenify
 
 const AboutGreenifyPage = () => {
   return (
@@ -70,7 +71,7 @@ const AboutGreenifyPage = () => {
             <img 
               class="rounded-xl shadow-lg w-full max-w-md object-cover h-80"
               alt="Ilustração de pessoas interagindo com elementos da natureza e tecnologia de forma harmoniosa"
-             src="https://images.unsplash.com/photo-1500137935701-ea1bb0946a8b" />
+             src={novaImagem} />
           </motion.div>
         </motion.section>
 

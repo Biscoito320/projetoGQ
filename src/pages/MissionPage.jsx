@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Zap, TrendingUp, Lightbulb, Users, Award } from "lucide-react";
+import novaImagem from "../img/reuniao.png"; // Imagem representativa da missão
 
 const MissionPage = () => {
   const steps = [
@@ -111,7 +112,7 @@ const MissionPage = () => {
               <img 
                 className="rounded-xl shadow-lg w-full object-cover h-80"
                 alt="Pessoas diversas engajadas em atividades sustentáveis, como plantar árvores e reciclar"
-               src="https://images.unsplash.com/photo-1683042155164-6ca3024faefb" />
+               src={novaImagem} />
             </div>
             <div className="space-y-6">
               <p className="text-muted-foreground leading-relaxed">

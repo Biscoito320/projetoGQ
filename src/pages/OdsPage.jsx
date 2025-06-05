@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Globe, Users, BookOpen, AlertTriangle, Lightbulb, Target, Zap } from "lucide-react";
+import novaImagem from "../img/acao.png"; // Imagem representativa do ODS 13.3
 
 const OdsPage = () => {
   return (
@@ -49,7 +50,7 @@ const OdsPage = () => {
             <img 
               className="rounded-xl shadow-2xl w-full max-w-md object-cover h-80 md:h-96"
               alt="Infográfico simplificado sobre ODS 13.3 com ícones de educação, conscientização e ação climática"
-             src="https://images.unsplash.com/photo-1618002406344-2f54a34c113b" />
+             src={novaImagem} />
           </motion.div>
         </motion.section>
 
