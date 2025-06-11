@@ -72,18 +72,18 @@ function AppContent() {
         >
           <motion.div
             animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             className="w-16 h-16 mb-4 mx-auto"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-              <path d="M2 22c1.25-1.25 2.5-2.5 3.5-2.5 1.5 0 2 1.5 3 1.5s1.5-1.5 3-1.5 2 1.5 3 1.5 1.5-1.5 3-1.5 2 1.5 3 1.5 1.5-1.5 3-1.5c1 0 2.25 1.25 3.5 2.5"/>
-              <path d="M2 19c3.5-3.5 6-7 11-7 6 0 8.5 3.5 9 5"/>
-              <path d="M2 16c3.5-3.5 6-7 11-7 5 0 8 2 9 4"/>
-              <path d="M2 13c3.5-3.5 6-7 11-7 4 0 7 1 8.5 2.5"/>
-            </svg>
+            {/* Substitua o SVG por uma imagem PNG */}
+            <img
+              src="https://storage.googleapis.com/hostinger-horizons-assets-prod/1ac13058-3f14-4aca-aef9-78cb864d901e/3af5a5d2ab092d11e861d817d21e2f7a.png" // Caminho relativo à pasta public ou assets
+              alt="Carregando..."
+              className="w-full h-full object-contain"
+            />
           </motion.div>
           <h1 className="text-2xl font-bold gradient-text">ClimaQuest</h1>
-          <p className="text-muted-foreground">Carregando um mundo mais sustentável...</p>
+          <p className="text-muted-foreground">Sua jornada está prestes a começar...</p>
         </motion.div>
       </div>
     );

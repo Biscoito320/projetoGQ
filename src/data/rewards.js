@@ -1,7 +1,7 @@
 export const rewards = [
   {
     id: "r1",
-    name: "Garrafa Reutilizável ClimaQuest",
+    name: "Garrafa Reutilizável Greenify",
     description: "Garrafa de aço inoxidável com isolamento térmico, mantém bebidas quentes por 12h e frias por 24h. Design exclusivo ClimaQuest.",
     price: 200,
     category: "Produtos Sustentáveis",
@@ -46,13 +46,14 @@ export const rewards = [
   },
   {
     id: "r6",
-    name: "Árvore Plantada em Seu Nome",
-    description: "Plantaremos uma árvore nativa em área de reflorestamento e você receberá um certificado com geolocalização e espécie.",
+    name: " Plante uma Árvore (IFPA)",
+    description: "Você poderá escolher uma muda, de qualquer espécie disponibilizadas pelo IFPA, para plantar em sua residência.",
     price: 100,
     category: "Impacto Ambiental",
-    type: "digital", // Pode ser digital (certificado) ou físico (se enviarem algo)
+    type: "physical", // Pode ser digital (certificado) ou físico (se enviarem algo)
     image: "tree-certificate"
   },
+  
   {
     id: "r7",
     name: "Camiseta Orgânica ClimaQuest",

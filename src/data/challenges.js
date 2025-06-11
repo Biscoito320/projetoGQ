@@ -2,20 +2,21 @@
 export const challenges = [
   {
     id: "c1",
-    title: "Workshop de Mudanças Climáticas",
-    description: "Organize um workshop educativo sobre mudanças climáticas em sua comunidade ou escola, focando na conscientização e ações práticas.",
+    title: "Desplugado por 1 hora",
+    description: "Fique 1 hora sem usar eletrônicos (celular, TV, videogame, etc.). Aproveite para ler, caminhar ou conversar. Menos energia, mais conexão real.",
     points: 100,
-    category: "Educação Ambiental",
-    difficulty: "Médio",
-    duration: "1 dia",
+    category: "Energia Sustentável",
+    difficulty: "Fácil",
+    duration: "1 hora",
     steps: [
-      "Prepare material educativo sobre mudanças climáticas",
-      "Encontre um local adequado para o workshop",
-      "Divulgue o evento na comunidade",
-      "Realize atividades práticas durante o workshop",
-      "Colete feedback dos participantes"
+      "Escolha um horário tranquilo",
+      "Desconecte todos os dispositivos eletrônicos",
+      "Planeje atividades alternativas (leitura, caminhada, meditação)",
+      "Evite distrações e aproveite o momento",
+      "Compartilhe sua experiência com amigos"
     ],
-    image: "workshop"
+    image: "unplugged"
+    
   },
   {
     id: "c2",
@@ -36,18 +37,18 @@ export const challenges = [
   },
   {
     id: "c3",
-    title: "Projeto Escola Sustentável",
-    description: "Implemente um projeto de educação ambiental em uma escola, focando em ações práticas contra mudanças climáticas.",
+    title: "Transformando Lixo em Vida",
+    description: "Separe restos orgânicos e crie uma composteira caseira. Reduza o lixo e produza adubo natural para plantas.",
     points: 150,
-    category: "Educação Ambiental",
-    difficulty: "Difícil",
-    duration: "3 meses",
+    category: "Redução de Resíduos",
+    difficulty: "Médio",
+    duration: "Contínuo",
     steps: [
-      "Desenvolva um plano de educação ambiental",
-      "Estabeleça parcerias com escolas",
-      "Realize atividades práticas com os alunos",
-      "Implemente projetos sustentáveis na escola",
-      "Avalie o impacto do projeto"
+      "Faça a lição sobre compostagem",
+      "Separe restos orgânicos da sua cozinha",
+      "Escolha um local ou recipiente adequado para a composteira",
+      "Monte a composteira com materiais reciclados",
+      "Monitore a decomposição e use o adubo produzido"
     ],
     image: "school-project"
   },
@@ -87,18 +88,18 @@ export const challenges = [
   },
   {
     id: "c6",
-    title: "Guia de Ação Climática Comunitário",
-    description: "Desenvolva um guia prático de ações contra mudanças climáticas para sua comunidade.",
+    title: "Dia sem Descartáveis",
+    description: "Encare 24h sem copo de plástico, sacola ou canudo. Use a criatividade e mostre que dá pra viver com menos lixo.",
     points: 80,
-    category: "Educação Ambiental",
+    category: "Redução de Resíduos",
     difficulty: "Fácil",
-    duration: "2 semanas",
+    duration: "1 dia",
     steps: [
-      "Pesquise ações efetivas e acessíveis",
-      "Crie conteúdo claro e prático",
-      "Inclua recursos locais relevantes",
-      "Distribua o guia na comunidade",
-      "Colete feedback e atualize"
+      "Planeje suas refeições e lanches sem descartáveis",
+      "Use recipientes reutilizáveis para alimentos e bebidas",
+      "Evite compras com embalagens plásticas",
+      "Use alternativas sustentáveis (ex: canudo de metal, sacola de pano)",
+      "Compartilhe sua experiência nas redes sociais"
     ],
     image: "guide"
   },

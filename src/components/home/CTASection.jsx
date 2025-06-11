@@ -23,9 +23,9 @@ const CTASection = ({ user, navigate }) => {
               <>
                 <Button
                   size="lg"
-                  variant="secondary"
+                  variant="outline"
                   onClick={() => navigate("/desafios")}
-                  className="bg-white text-primary hover:bg-white/90"
+                  className="border-white bg-white text-primary hover:bg-white/10"
                 >
                   Ver Desafios
                 </Button>
@@ -33,7 +33,7 @@ const CTASection = ({ user, navigate }) => {
                   size="lg"
                   variant="outline"
                   onClick={() => navigate("/trilha")}
-                  className="border-white text-white hover:bg-white/10"
+                  className="border-white bg-white text-primary hover:bg-white/10"
                 >
                   Trilha de Aprendizado
                 </Button>
@@ -42,9 +42,9 @@ const CTASection = ({ user, navigate }) => {
               <>
                 <Button
                   size="lg"
-                  variant="secondary"
+                  variant="outline"
                   onClick={() => navigate("/cadastro")}
-                  className="bg-white text-primary hover:bg-white/90"
+                  className="border-white bg-white text-primary hover:bg-white/10"
                 >
                   Criar Conta
                 </Button>
@@ -52,7 +52,7 @@ const CTASection = ({ user, navigate }) => {
                   size="lg"
                   variant="outline"
                   onClick={() => navigate("/login")}
-                  className="border-white text-white hover:bg-white/10"
+                  className="border-white bg-white text-primary hover:bg-white/10"
                 >
                   Entrar
                 </Button>

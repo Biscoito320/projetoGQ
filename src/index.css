@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,35 +5,35 @@
 @layer base {
   :root {
     /* Tema Claro: Base Branca/Creme, Azul Profundo, Coral/Laranja Queimado */
-    --background: 0 0% 100%; /* Branco */
-    --foreground: 220 40% 15%; /* Azul muito escuro / Cinza escuro para texto */
+    --background: 50 40% 97%; /* Branco de fundo */ 
+    --foreground: 105 45% 25%; /* Azul muito escuro/Cinza escuro para texto principal */
     
-    --card: 45 30% 97%; /* Creme suave (ex: #FAF7F0) */
-    --card-foreground: 220 40% 20%;
+    --card: 45 30% 97%; /* Creme suave para cartões */
+    --card-foreground: 220 40% 20%; /* Azul escuro para texto em cartões */
     
-    --popover: 45 30% 97%;
-    --popover-foreground: 220 40% 20%;
+    --popover: 45 30% 97%; /* Fundo de popover igual ao card */
+    --popover-foreground: 220 40% 20%; /* Texto do popover */
     
-    --primary: 89 100% 38%; /* Azul Profundo (ex: #3366CC) */
-    --primary-foreground: 0 0% 100%; /* Branco para contraste */
+    --primary: 89 100% 38%; /* Azul Profundo (ex: #3366CC) para elementos principais */
+    --primary-foreground: 0 0% 100%; /* Branco para texto sobre o primário */
     
-    --secondary: 50 90% 60%; /* Laranja Queimado / Coral Vibrante (ex: #FF6F4D) */
-    --secondary-foreground: 0 0% 100%; /* Branco para contraste */
+    --secondary: 50 90% 60%; /* Laranja Queimado/Coral Vibrante (ex: #FF6F4D) para destaques */
+    --secondary-foreground: 0 0% 100%; /* Branco para texto sobre o secundário */
     
-    --accent: 140 60% 75%; /* Um azul um pouco mais claro que o primário, para acentos */
-    --accent-foreground: 0 0% 100%; 
+    --accent: 140 60% 75%; /* Azul claro para detalhes/acento */
+    --accent-foreground: 0 0% 100%; /* Branco para texto sobre acento */
 
-    --muted: 220 20% 94%; /* Cinza bem claro / Tom de branco "sujo" */
+    --muted: 220 20% 94%; /* Cinza bem claro para fundos suaves */
     --muted-foreground: 220 20% 40%; /* Cinza médio para texto muted */
     
-    --destructive: 0 75% 55%; /* Vermelho vibrante */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 75% 55%; /* Vermelho vibrante para erros/alertas */
+    --destructive-foreground: 0 0% 100%; /* Branco para texto sobre vermelho */
     
     --border: 220 20% 88%; /* Cinza claro para bordas */
-    --input: 220 20% 88%;
-    --ring: 140 60% 55%; /* Azul Profundo para anel de foco */
+    --input: 220 20% 88%; /* Cinza claro para inputs */
+    --ring: 140 60% 55%; /* Azul profundo para anel de foco */
     
-    --radius: 0.75rem;
+    --radius: 0.75rem; /* Raio de borda padrão */
 
     /* Cores para categorias de desafios */
     --category-energia-sustentavel: 48 100% 50%;   /* Amarelo vibrante */
@@ -52,37 +51,37 @@
     --category-bem-estar-rewards: 30 100% 50%;               /* Laranja vibrante */
     --category-impacto-ambiental-rewards: 190 100% 45%;      /* Azul ciano vibrante */
     --category-vestuario-rewards: 320 100% 60%;              /* Magenta vibrante */
-    --category-default: 220 10% 50%;  
+    --category-default: 220 10% 50%;  /* Cinza azulado padrão */
   }
  
   .dark {
-    /* Tema Escuro: Verde Escuro Elegante, Textos Claros, Azul-Água, Amarelo Queimado (para acentos, não categorias) */
-    --background: 165 90% 7%; /* Verde Escuro Elegante (ex: #0F2E1E) */
-    --foreground: 45 30% 90%; /* Creme/Branco suave para texto */
-    
-    --card: 150 45% 18%; /* Tom um pouco mais claro de verde-escuro */
-    --card-foreground: 45 30% 88%;
-    
-    --popover: 150 45% 18%;
-    --popover-foreground: 45 30% 88%;
-    
-    --primary: 90 100% 60%; /* Azul-Água / Ciano Brilhante (ex: #4DD8FF) */
-    --primary-foreground: 150 50% 10%; /* Verde bem escuro para contraste */
-    
-    --secondary: 45 70% 60%; /* Amarelo Queimado / Mostarda (ex: #FFC74D) - Cuidado com contraste para texto! */
-    --secondary-foreground: 150 50% 10%;
-    
-    --accent: 140 60% 75%; /* Azul-Água um pouco mais claro/brilhante */
-    --accent-foreground: 150 50% 5%; 
+    /* Tema Escuro: Verde Escuro Elegante, Textos Claros, Azul-Água, Amarelo Queimado */
+    --background: 165 90% 7%; /* Verde escuro elegante para fundo */
+    --foreground: 45 30% 90%; /* Creme/branco suave para texto */
 
-    --muted: 150 40% 22%; /* Tom mais claro de verde-escuro para muted background */
-    --muted-foreground: 45 30% 70%; /* Creme/Cinza mais suave para texto muted */
+    --card: 150 45% 18%; /* Verde escuro um pouco mais claro para cartões */
+    --card-foreground: 45 30% 88%; /* Creme para texto em cartões */
     
-    --destructive: 0 70% 65%; /* Vermelho um pouco mais claro */
-    --destructive-foreground: 150 50% 5%;
+    --popover: 150 45% 18%; /* Fundo de popover igual ao card */
+    --popover-foreground: 45 30% 88%; /* Texto do popover */
     
-    --border: 150 40% 28%; /* Tom de verde-escuro para bordas */
-    --input: 150 40% 28%;
+    --primary: 90 100% 60%; /* Azul-Água/Ciano brilhante para elementos principais */
+    --primary-foreground: 150 50% 10%; /* Verde bem escuro para texto sobre primário */
+    
+    --secondary: 45 70% 60%; /* Amarelo queimado/mostarda para destaques */
+    --secondary-foreground: 150 50% 10%; /* Verde escuro para texto sobre secundário */
+    
+    --accent: 140 60% 75%; /* Azul-Água claro para detalhes/acento */
+    --accent-foreground: 150 50% 5%; /* Verde escuro para texto sobre acento */
+
+    --muted: 150 40% 22%; /* Verde escuro claro para fundos muted */
+    --muted-foreground: 45 30% 70%; /* Creme/cinza suave para texto muted */
+    
+    --destructive: 0 70% 65%; /* Vermelho claro para erros/alertas */
+    --destructive-foreground: 150 50% 5%; /* Verde escuro para texto sobre vermelho */
+    
+    --border: 150 40% 28%; /* Verde escuro para bordas */
+    --input: 150 40% 28%; /* Verde escuro para inputs */
     --ring: 180 60% 55%; /* Azul-Água para anel de foco */
 
     /* Cores para categorias de desafios no tema escuro */
@@ -101,119 +100,116 @@
     --category-bem-estar-rewards: 45 100% 60%;               /* Laranja neon */
     --category-impacto-ambiental-rewards: 180 100% 60%;      /* Azul ciano neon */
     --category-vestuario-rewards: 320 100% 70%;              /* Magenta neon */
-    --category-default: 220 100% 70%;  
+    --category-default: 220 100% 70%;  /* Cinza azulado claro padrão */
   }
 }
 
+/* 
+ * Aplica a cor da borda padrão em todos os elementos.
+ */
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-150;
   }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', 'Inter', sans-serif;  /* Manter Inter para um look moderno e legível */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight; /* Ajuste global para títulos */
   }
 }
 
+/*
+ * Texto com gradiente: do azul profundo (primário) ao laranja/coral (secundário)
+ */
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
 }
 
+/*
+ * Remove padrões de fundo de elementos com essas classes
+ */
 .eco-pattern, .leaf-pattern {
   background-image: none;
 }
 
-/* Estilos da Trilha de Aprendizado */
+/*
+ * Mapa da trilha de aprendizado: centralizado, largura máxima e espaçamento
+ */
 .learning-trail-map {
   position: relative;
   padding: 2rem 0;
-  max-width: 900px; /* Limita a largura máxima do mapa */
-  margin: 0 auto; /* Centraliza o mapa */
+  max-width: 900px; /* Limita largura */
+  margin: 0 auto; /* Centraliza */
 }
 
+/*
+ * Caminho da trilha: linha vertical central, cor cinza claro (muted)
+ */
 .trail-path {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 8px; /* Caminho um pouco mais grosso */
-  background-color: hsl(var(--muted));
+  width: 8px;
+  background-color: hsl(var(--muted)); /* Cinza claro */
   border-radius: 4px;
   transform: translateX(-50%);
   z-index: 1;
 }
 
+/*
+ * Progresso da trilha: gradiente do azul profundo (primário) ao azul claro (accent)
+ */
 .trail-path-progress {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent))); /* Gradiente mais suave */
+  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)));
   border-radius: 4px;
   z-index: 2;
   height: 0%; 
-  /* transition: height 1s cubic-bezier(0.65, 0, 0.35, 1); Animação mais fluida */
+  /* transition: height 1s cubic-bezier(0.65, 0, 0.35, 1); */
 }
 
-
-.trail-milestone {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  margin-bottom: 4rem; /* Aumenta o espaçamento entre milestones */
-}
-
-.trail-milestone-content {
-  @apply bg-card p-6 rounded-xl shadow-xl border border-border/80 transition-all duration-300 hover:shadow-2xl;
-  width: calc(50% - 4rem); /* Ajusta largura para o novo espaçamento do nó */
-  transform-origin: center;
-}
-
-.trail-milestone.left .trail-milestone-content {
-  margin-right: auto;
-  text-align: right;
-}
-.trail-milestone.left .milestone-info {
-  justify-content: flex-end;
-}
-
-
-.trail-milestone.right .trail-milestone-content {
-  margin-left: auto;
-  text-align: left;
-}
-.trail-milestone.right .milestone-info {
-  justify-content: flex-start;
-}
-
+/*
+ * Nó da trilha (milestone): círculo grande, cor muda conforme status
+ */
 .milestone-node {
   @apply rounded-full flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
-  width: 60px; /* Nó maior */
+  width: 60px;
   height: 60px;
   border: 5px solid hsl(var(--background)); 
-  background-color: hsl(var(--muted));
+  background-color: hsl(var(--muted)); /* Cinza claro */
   box-shadow: 0 4px 12px hsla(var(--foreground), 0.1);
   transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Nó completado: azul profundo (primário) */
 .milestone-node.completed {
   background-color: hsl(var(--primary)); 
-  transform: translate(-50%, -50%) scale(1.05); /* Ajuste de transform */
+  transform: translate(-50%, -50%) scale(1.05);
   box-shadow: 0 0 20px hsla(var(--primary), 0.5);
 }
+/* Nó ativo: laranja/coral (secundário) */
 .milestone-node.active {
   background-color: hsl(var(--secondary)); 
-  transform: translate(-50%, -50%) scale(1.15); /* Ajuste de transform */
+  transform: translate(-50%, -50%) scale(1.15);
   box-shadow: 0 0 25px hsla(var(--secondary), 0.6);
 }
+/* Nó bloqueado: cinza claro com opacidade */
 .milestone-node.locked {
   background-color: hsl(var(--muted) / 0.7);
   border-color: hsl(var(--muted));
 }
 
-.milestone-node .milestone-node-icon { /* Classe específica para o ícone dentro do nó */
+/* Ícone do nó: cor muda conforme status */
+.milestone-node .milestone-node-icon {
   color: hsl(var(--muted-foreground)); 
   transition: color 0.3s ease;
 }
@@ -227,26 +223,26 @@
   color: hsl(var(--muted-foreground) / 0.6);
 }
 
-
+/* Informações do milestone: alinhamento e espaçamento */
 .milestone-info {
- @apply flex items-center gap-2.5; /* Aumenta o gap */
+ @apply flex items-center gap-2.5;
 }
 
-
+/* Responsividade: ajusta posições e larguras para telas pequenas */
 @media (max-width: 768px) {
   .trail-path {
-    left: 30px; /* Ajusta posição do caminho para o nó maior */
+    left: 30px;
     transform: translateX(0);
   }
   .trail-milestone-content {
-    width: calc(100% - 60px); /* Ajusta para o nó maior e mais margem */
+    width: calc(100% - 60px);
     margin-left: 60px; 
     text-align: left;
   }
   .trail-milestone.left .trail-milestone-content,
   .trail-milestone.right .trail-milestone-content {
     margin-right: 0;
-    margin-left: 60px; /* Ajusta para o nó maior */
+    margin-left: 60px;
     text-align: left;
   }
   .trail-milestone.left .milestone-info,
@@ -254,19 +250,17 @@
     justify-content: flex-start;
   }
   .milestone-node {
-    left: 30px; /* Ajusta posição do nó */
-    /* transform: translate(-50%, -50%); Mantido, mas left ajustado */
+    left: 30px;
   }
 }
 
-
+/* Distintivo de nível: badge arredondado, cor definida por categoria */
 .level-badge {
   @apply px-3 py-1 text-xs font-bold rounded-full inline-flex items-center gap-1;
 }
 
-
 /* Cores distintas para categorias de Desafios/Recompensas */
-/* Usando as novas variáveis CSS para categorias de DESAFIOS */
+/* Cada classe define a cor principal e o fundo do ícone usando as variáveis CSS */
 .category-color-energia-sustentavel { --category-color: hsl(var(--category-energia-sustentavel)); --category-icon-bg: hsla(var(--category-energia-sustentavel), 0.15); }
 .category-color-economia-agua { --category-color: hsl(var(--category-economia-agua)); --category-icon-bg: hsla(var(--category-economia-agua), 0.15); }
 .category-color-reducao-residuos { --category-color: hsl(var(--category-reducao-residuos)); --category-icon-bg: hsla(var(--category-reducao-residuos), 0.15); }
@@ -275,7 +269,6 @@
 .category-color-consumo-consciente { --category-color: hsl(var(--category-consumo-consciente)); --category-icon-bg: hsla(var(--category-consumo-consciente), 0.15); }
 .category-color-educacao-ambiental { --category-color: hsl(var(--category-educacao-ambiental)); --category-icon-bg: hsla(var(--category-educacao-ambiental), 0.15); }
 
-/* Usando as variáveis CSS para categorias de RECOMPENSAS (podem ser as mesmas ou diferentes) */
 .category-color-produtos-sustentaveis-rewards { --category-color: hsl(var(--category-produtos-sustentaveis-rewards)); --category-icon-bg: hsla(var(--category-produtos-sustentaveis-rewards), 0.15); }
 .category-color-jardinagem-rewards { --category-color: hsl(var(--category-jardinagem-rewards)); --category-icon-bg: hsla(var(--category-jardinagem-rewards), 0.15); }
 .category-color-educacao-rewards { --category-color: hsl(var(--category-educacao-rewards)); --category-icon-bg: hsla(var(--category-educacao-rewards), 0.15); }
@@ -285,7 +278,7 @@
 
 .category-color-default { --category-color: hsl(var(--category-default)); --category-icon-bg: hsla(var(--category-default), 0.15); }
 
-
+/* Aplica as cores de categoria em cartões e badges */
 .challenge-card .category-icon-container, .reward-card .category-icon-container {
   background-color: var(--category-icon-bg);
 }

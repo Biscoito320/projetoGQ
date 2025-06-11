@@ -3,7 +3,7 @@ export const lessons = [
     id: "l1",
     title: "Introdução às Mudanças Climáticas",
     description: "Entenda os conceitos básicos sobre mudanças climáticas, efeito estufa e aquecimento global.",
-    points: 30,
+    points: 40,
     duration: "20 minutos",
     content: `
       <h2>O que são Mudanças Climáticas?</h2>
@@ -15,14 +15,14 @@ export const lessons = [
       <h2>Aquecimento Global</h2>
       <p>O aquecimento global é o aumento gradual da temperatura média da superfície da Terra devido ao aumento dos níveis de gases de efeito estufa na atmosfera. Este aumento é principalmente resultado da queima de combustíveis fósseis, desmatamento e práticas agrícolas intensivas.</p>
       
-      <h2>Impactos das Mudanças Climáticas</h2>
+      <h2>Impactos das Mudanças Climáticas:</h2>
       <ul>
-        <li>Aumento do nível do mar</li>
-        <li>Eventos climáticos extremos mais frequentes</li>
-        <li>Alterações nos padrões de precipitação</li>
-        <li>Perda de biodiversidade</li>
-        <li>Impactos na saúde humana</li>
-        <li>Insegurança alimentar</li>
+        <li> - Aumento do nível do mar</li>
+        <li> - Eventos climáticos extremos mais frequentes</li>
+        <li> - Alterações nos padrões de precipitação</li>
+        <li> - Perda de biodiversidade</li>
+        <li> - Impactos na saúde humana</li>
+        <li> - Insegurança alimentar</li>
       </ul>
     `,
     quiz: [
@@ -122,9 +122,9 @@ export const lessons = [
   },
   {
     id: "l3",
-    title: "Energias Renováveis",
-    description: "Conheça as principais fontes de energia renovável e seu papel na mitigação das mudanças climáticas.",
-    points: 35,
+    title: "Compostagem e Resíduos Orgânicos",
+    description: "Aprenda como a compostagem pode ajudar a reduzir resíduos e enriquecer o solo.",
+    points: 30,
     duration: "30 minutos",
     content: `
       <h2>O que são Energias Renováveis?</h2>
@@ -340,5 +340,8 @@ export const lessons = [
         correctAnswer: 1
       }
     ]
+    
+    
   }
+  
 ];

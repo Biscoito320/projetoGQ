@@ -42,7 +42,7 @@ const CommunitySection = ({ user, navigate }) => {
               </Button>
             </div>
             <div className="col-span-2 relative">
-              <img  className="w-full h-full object-cover" alt="Comunidade diversa de pessoas engajadas em atividades ambientais ao ar livre." 
+              <img  className="overflow-hidden shadow-2xl border-card/80 transform hover:scale-105 transition-transform duration-500 ease-out" alt="Comunidade diversa de pessoas engajadas em atividades ambientais ao ar livre." 
               src={novaImgem} />
               <div className="absolute bottom-0 right-0 p-8 max-w-md">
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">

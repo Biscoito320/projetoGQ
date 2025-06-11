@@ -1,3 +1,15 @@
+<!--
+Este arquivo .htaccess faz duas coisas principais:
+
+1. Configura o mod_rewrite para aplicações SPA (Single Page Application) como React:
+   - Ativa o mecanismo de reescrita de URLs (RewriteEngine On).
+   - Define a base das URLs como a raiz do site (RewriteBase /).
+   - Se o arquivo ou diretório solicitado não existir, redireciona todas as requisições para index.html.
+   - Isso garante que as rotas do React funcionem corretamente mesmo ao atualizar a página ou acessar URLs diretamente.
+
+2. Adiciona um cabeçalho HTTP personalizado:
+   - Se o módulo de headers estiver ativo, adiciona o cabeçalho "X-Powered-By" com o valor "Hostinger Horizons" em todas as respostas.
+-->
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /

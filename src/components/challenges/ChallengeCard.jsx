@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Award, Clock, BarChart3, CheckCircle2, ArrowRight, Star } from "lucide-react"; // Star para pontos
 import { Button } from "@/components/ui/button";
 
+
 const ChallengeCard = ({ challenge, onChallengeClick, isCompleted, categoryIcon: CategoryIcon, colorClass }) => {
   return (
     <motion.div
