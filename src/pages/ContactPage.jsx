@@ -51,7 +51,7 @@ const ContactPage = () => {
           className="text-center mb-16"
         >
           <MessageSquare className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             Entre em <span className="gradient-text">Contato</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -107,7 +107,7 @@ const ContactPage = () => {
                   className="mt-1"
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" className="w-full rounded-full" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <motion.div
@@ -139,8 +139,8 @@ const ContactPage = () => {
               <p className="text-muted-foreground">
                 Para parcerias, imprensa ou outras questões formais:
               </p>
-              <a href="mailto:contato@greenify.app" className="text-lg text-accent hover:underline font-medium">
-                contato@greenify.app
+              <a href="mailto:greenify84@gmail.com" className="text-lg text-accent hover:underline font-medium">
+                greenify84@gmail.com
               </a>
             </div>
 

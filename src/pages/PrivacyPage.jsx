@@ -44,7 +44,7 @@ const ContactForm = () => {
         <Label htmlFor="contact-message" className="text-sm font-medium text-foreground">Sua Mensagem</Label>
         <Textarea id="contact-message" placeholder="Escreva sua mensagem detalhadamente aqui..." required rows={5} className="mt-1"/>
       </div>
-      <Button type="submit" size="lg" className="w-full">
+      <Button type="submit" size="lg" className="rounded-full w-full">
         <MessageSquare size={18} className="mr-2"/> Enviar Mensagem
       </Button>
     </motion.form>
@@ -109,7 +109,7 @@ const PrivacyPage = () => {
                   { icon: Instagram, href: "#", label: "Instagram" },
                   { icon: Github, href: "https://github.com/hostinger", label: "GitHub" },
                 ].map(social => (
-                  <Button key={social.label} variant="outline" asChild className="flex-grow sm:flex-grow-0">
+                  <Button key={social.label} variant="outline" asChild className="rounded-full flex-grow sm:flex-grow-0">
                     <a href={social.href} target="_blank" rel="noopener noreferrer">
                       <social.icon size={18} className="mr-2" /> {social.label}
                     </a>

@@ -46,7 +46,7 @@ const Footer = () => {
 
           {/* Coluna 2: CONTATO */}
           <div className="space-y-4 md:col-span-1">
-            <h4 className="font-semibold text-lg text-foreground mb-3">
+            <h4 className="font-semibold font-black text-lg text-foreground mb-3">
               Contato
             </h4>
             <ul className="space-y-2 text-sm">

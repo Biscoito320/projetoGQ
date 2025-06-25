@@ -29,7 +29,7 @@ const ChallengeCard = ({ challenge, onChallengeClick, isCompleted, categoryIcon:
             </span>
             <span className="text-xs font-medium bg-background/80 backdrop-blur-sm text-foreground px-3 py-1 rounded-full flex items-center">
               <Star className="h-3 w-3 mr-1 text-primary" /> {/* Usando Star e cor primária */}
-              {challenge.points} XP
+              {challenge.points} PTS
             </span>
           </div>
         </div>
@@ -58,7 +58,7 @@ const ChallengeCard = ({ challenge, onChallengeClick, isCompleted, categoryIcon:
         </p>
         <Button 
           onClick={() => onChallengeClick(challenge)}
-          className="w-full mt-auto group"
+          className="w-full rounded-full mt-auto group"
           variant={isCompleted ? "outline" : "default"}
         >
           {isCompleted ? "Ver Detalhes" : "Participar"}

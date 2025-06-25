@@ -15,8 +15,8 @@ const CommunitySection = ({ user, navigate }) => {
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">
-            Junte-se à nossa <span className="gradient-text">comunidade</span> Greenify
+          <h2 className="text-3xl mb-4">
+            Junte-se à nossa <span className="font-black gradient-text">Comunidade</span> Greenify
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Conecte-se com pessoas que compartilham os mesmos valores e objetivos de construir um futuro mais sustentável.
@@ -37,12 +37,12 @@ const CommunitySection = ({ user, navigate }) => {
               <p className="text-muted-foreground mb-6">
                 Milhares de pessoas comprometidas com a ação climática, compartilhando experiências e conhecimento.
               </p>
-              <Button onClick={() => user ? navigate("/desafios") : navigate("/cadastro")}>
+              <Button className="mt-6 neumorphic-btn text-secondary-foreground hover:bg-secondary/90 shadow-lg rounded-full text-base hover:scale-105" onClick={() => user ? navigate("/desafios") : navigate("/cadastro")}>
                 {user ? "Explorar Desafios" : "Participar Agora"}
               </Button>
             </div>
             <div className="col-span-2 relative">
-              <img  className="overflow-hidden shadow-2xl border-card/80 transform hover:scale-105 transition-transform duration-500 ease-out" alt="Comunidade diversa de pessoas engajadas em atividades ambientais ao ar livre." 
+              <img  className="overflow-hidden shadow-2xl border-card/80 " alt="Comunidade diversa de pessoas engajadas em atividades ambientais ao ar livre." 
               src={novaImgem} />
               <div className="absolute bottom-0 right-0 p-8 max-w-md">
                 <div className="bg-background/80 backdrop-blur-sm p-6 rounded-xl shadow-lg">

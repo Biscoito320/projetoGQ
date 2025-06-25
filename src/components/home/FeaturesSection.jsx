@@ -8,6 +8,8 @@ import { useUser } from "@/context/UserContext";
 const FeatureCard = ({ icon: Icon, title, description, variants }) => (
   <motion.div
     variants={variants}
+    whileHover={{ scale: 1.06 }} // Faz o card crescer ao passar o mouse
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
     className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow text-center"
   >
     <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-6 mx-auto border-2 border-primary/20 shadow-md">
@@ -57,8 +59,8 @@ const FeaturesSection = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="text-center mb-16"
           >
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">
-            Como o <span className="gradient-text">ClimaQuest</span> Funciona
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl  mb-4 text-foreground tracking-tight">
+            Como o <span className="gradient-text font-black">ClimaQuest</span> Funciona
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Uma plataforma completa para transformar seu conhecimento em ações concretas pelo clima.

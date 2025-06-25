@@ -24,8 +24,8 @@ const ImpactSection = ({ navigate }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-3xl font-bold mb-6">
-              Nosso Foco: <span className="gradient-text">ODS 13.3</span>
+            <h2 className="text-3xl mb-6">
+              Nosso Foco: <span className="gradient-text font-black ">ODS 13.3</span>
             </h2>
             <p className="text-lg mb-6 text-muted-foreground">
               O Objetivo de Desenvolvimento Sustentável 13.3 visa melhorar a educação, aumentar a conscientização e a capacidade humana e institucional sobre mitigação, adaptação, redução de impacto e alerta precoce da mudança do clima.
@@ -40,7 +40,7 @@ const ImpactSection = ({ navigate }) => {
                 </li>
               ))}
             </ul>
-            <Button className="mt-6 neumorphic-btn text-secondary-foreground hover:bg-secondary/90 shadow-lg text-base px-7 py-3" onClick={() => navigate("/desafios")}>
+<Button size="lg" className="mt-6 neumorphic-btn text-secondary-foreground hover:bg-secondary/90 shadow-lg rounded-full text-base hover:scale-105" onClick={() => navigate("/desafios")}>
               Comece Agora
             </Button>
           </motion.div>
@@ -51,7 +51,7 @@ const ImpactSection = ({ navigate }) => {
             transition={{ duration: 0.7, delay: 0.15, ease: "easeInOut" }}
             className="relative"
           >
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-card/80 transform hover:scale-105 transition-transform duration-500 ease-out">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-card/80 ">
               <img  className="w-full h-auto" alt="Gráfico estilizado mostrando crescimento de impacto ambiental positivo." 
               src={novaImagem} />
             </div>

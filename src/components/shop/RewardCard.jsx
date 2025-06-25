@@ -28,7 +28,7 @@ const RewardCard = ({ reward, onRewardClick, hasPurchased, categoryIcon: Categor
             </span>
             <span className="text-xs font-medium bg-background/80 backdrop-blur-sm text-foreground px-3 py-1 rounded-full flex items-center">
               <Star className="h-3 w-3 mr-1 text-primary" /> {/* Star e cor primária */}
-              {reward.price} XP
+              {reward.price} PTS
             </span>
           </div>
         </div>
@@ -47,7 +47,7 @@ const RewardCard = ({ reward, onRewardClick, hasPurchased, categoryIcon: Categor
         </p>
         <Button 
           onClick={() => onRewardClick(reward)}
-          className="w-full mt-auto group"
+          className="w-full rounded-full mt-auto group"
           variant={hasPurchased ? "outline" : "default"}
         >
           {hasPurchased ? "Ver Detalhes" : "Adquirir"}

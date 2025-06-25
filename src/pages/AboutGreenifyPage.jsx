@@ -19,7 +19,7 @@ const AboutGreenifyPage = () => {
             alt="Greenify Logo" 
             className="h-16 w-16 mx-auto mb-6" 
           />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             Sobre a <span className="gradient-text">Greenify</span>
           </h1>
         </motion.header>
@@ -88,10 +88,10 @@ const AboutGreenifyPage = () => {
             Junte-se a nós na missão de construir um futuro mais verde e consciente. Cada pequena ação conta, e juntos podemos fazer uma grande diferença.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg">
+            <Button className="rounded-full" asChild size="lg">
               <Link to="/cadastro">Crie sua Conta</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button className="rounded-full" asChild variant="outline" size="lg">
               <Link to="/desafios">Explore os Desafios</Link>
             </Button>
           </div>

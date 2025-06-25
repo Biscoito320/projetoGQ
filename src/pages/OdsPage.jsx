@@ -15,7 +15,7 @@ const OdsPage = () => {
           className="text-center mb-16"
         >
           <Globe className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             ODS 13.3: <span className="gradient-text">Educação e Conscientização Climática</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -106,10 +106,10 @@ const OdsPage = () => {
             Aprenda. Aja. Evolua. Este é o nosso lema e o motor da nossa contribuição para um planeta mais resiliente.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg">
+            <Button className="rounded-full" asChild size="lg">
               <Link to="/trilha">Explore nossa Trilha</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button className="rounded-full" asChild variant="outline" size="lg">
               <Link to="/desafios">Participe dos Desafios</Link>
             </Button>
           </div>

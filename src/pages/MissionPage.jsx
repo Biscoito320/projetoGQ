@@ -43,7 +43,7 @@ const MissionPage = () => {
             <Zap size={28} className="text-primary mx-1" />
             <TrendingUp size={28} className="text-primary mx-1" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             Nossa Missão: <span className="gradient-text">Aprenda. Aja. Evolua.</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -88,10 +88,10 @@ const MissionPage = () => {
             O ClimaQuest foi desenhado para ser mais do que um aplicativo: é uma ferramenta para catalisar essa transformação em cada usuário, tornando a jornada pela sustentabilidade recompensadora e cheia de descobertas.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild size="lg">
+            <Button className="rounded-full" asChild size="lg">
               <Link to="/trilha">Comece a Aprender</Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button className="rounded-full" asChild variant="outline" size="lg">
               <Link to="/desafios">Comece a Agir</Link>
             </Button>
           </div>
@@ -126,7 +126,7 @@ const MissionPage = () => {
                 <Award size={24} className="text-secondary mr-4" />
                 <p className="text-foreground">Ganhe reconhecimento e <strong className="text-secondary">recompensas exclusivas</strong> por seu engajamento.</p>
               </div>
-              <Button asChild size="lg" className="w-full md:w-auto">
+              <Button asChild size="lg" className="rounded-full w-full md:w-auto">
                 <Link to="/cadastro">Crie sua Conta e Comece Agora!</Link>
               </Button>
             </div>

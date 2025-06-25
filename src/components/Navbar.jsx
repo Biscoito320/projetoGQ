@@ -18,18 +18,24 @@ import {
 
 // Componente para cada item de navegação
 const NavLinkItem = ({ to, icon: Icon, label, currentPath, onClick }) => (
-  <Link
-    to={to}
-    onClick={onClick}
-    className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-      currentPath === to
-        ? "bg-primary/10 text-primary" // Destaca o link ativo
-        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-    }`}
+  <motion.div
+    whileHover={{ scale: 1.08 }} // Aumenta levemente ao passar o mouse
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    className="inline-block"
   >
-    <Icon className="h-5 w-5" /> {/* Ícone do link */}
-    <span>{label}</span> {/* Nome do link */}
-  </Link>
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+        currentPath === to
+          ? "bg-primary/10 text-primary" // Destaca o link ativo
+          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+      }`}
+    >
+      <Icon className="h-5 w-5" /> {/* Ícone do link */}
+      <span>{label}</span> {/* Nome do link */}
+    </Link>
+  </motion.div>
 );
 
 // Componente principal da Navbar
@@ -78,7 +84,7 @@ const Navbar = () => {
           </Link>
 
         {/* Navegação principal (visível apenas em telas médias para cima) */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center text-sm font-semibold transition-all duration-200 rounded-lg px-4 py-2 group gap-1">
           {navLinks.map((link) => (
             <NavLinkItem 
               key={link.path}
@@ -97,7 +103,7 @@ const Navbar = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="ghost" size="icon" onClick={toggleTheme} className="hidden md:flex rounded-full group hover:scale-105">
-                  {theme === 'light' ? <Sun className="h-5 w-5 text-yellow-400 group-hover:scale-110 transition-transform" /> : <Moon className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />}
+                  {theme === 'light' ? <Sun className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" /> : <Moon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />}
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom">
@@ -149,10 +155,10 @@ const Navbar = () => {
           ) : (
             // Se não está logado, mostra botões de login e cadastro (apenas em telas médias para cima)
             <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" onClick={() => navigate("/login")}>
+              <Button className="rounded-full" variant="ghost" onClick={() => navigate("/login")}>
                 Entrar
               </Button>
-              <Button onClick={() => navigate("/cadastro")}>Cadastrar</Button>
+              <Button className="rounded-full" onClick={() => navigate("/cadastro")}>Cadastrar</Button>
             </div>
           )}
           {/* Botão do menu mobile (hamburguer ou X) */}
@@ -206,6 +212,21 @@ const Navbar = () => {
                 </div>
               </Link>
             )}
+
+            {/* Botão de alternância de tema no mobile */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="flex rounded-full group hover:scale-105"
+              aria-label="Alternar Tema"
+            >
+              {theme === 'light' ? (
+                <Sun className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+              ) : (
+                <Moon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+              )}
+            </Button>
 
             {/* Navegação principal em formato de coluna para mobile */}
             <nav className="flex flex-col gap-2">

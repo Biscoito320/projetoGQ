@@ -24,7 +24,7 @@ const HeroSection = ({ user, navigate }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               {user ? (
-                <Button size="lg" onClick={() => navigate("/desafios")} className="hidden md:flex rounded-full group hover:scale-105">
+                <Button size="lg" onClick={() => navigate("/desafios")} className="hidden hover:bg-secondary/90 md:flex rounded-full group hover:scale-105">
                   Ver Desafios
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -45,7 +45,7 @@ const HeroSection = ({ user, navigate }) => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative"
           >
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-card/80 transform hover:scale-105 transition-transform duration-500 ease-out">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-card/80 ">
               <img  className="w-full h-auto" alt="Pessoas plantando árvores em um parque ensolarado, simbolizando ação climática positiva." 
               src={novaImagem}/>
               <div className="absolute bottom-0 left-0 right-0 p-6">
