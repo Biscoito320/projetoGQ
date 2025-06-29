@@ -48,11 +48,6 @@ const HeroSection = ({ user, navigate }) => {
             <div className="rounded-3xl overflow-hidden shadow-2xl border-card/80 ">
               <img  className="w-full h-auto" alt="Pessoas plantando árvores em um parque ensolarado, simbolizando ação climática positiva." 
               src={novaImagem}/>
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-sm font-medium bg-background/80 backdrop-blur-sm p-3 rounded-lg inline-block">
-                  Juntos podemos fazer a diferença para o ODS 13.3 - Educação e conscientização sobre mudanças climáticas
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
