@@ -100,49 +100,28 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {/* Pontuação do usuário (sempre visível) */}
           {user && (
-            <div className="flex items-center gap-2 bg-muted/80 px-4 py-1.5 rounded-full border-2 border-primary/30 shadow-inner transform transition-transform hover:scale-105 md:order-1 order-1">
+            <div className="flex items-center gap-2 bg-muted/80 px-4 py-1.5 rounded-full border-2 border-primary/30 shadow-inner transform transition-transform hover:scale-105">
               <Gem className="h-4 w-4"/>
               <span className="text-sm font-bold text-foreground">{user.points} pts</span>
             </div>
           )}
 
-          {/* Botão do menu mobile (hamburguer ou X) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden order-2"
-            onClick={toggleMenu}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-
-          {/* Botão de logout (apenas se logado) */}
-          {user && (
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={handleLogout}
-                    className="text-muted-foreground hover:text-destructive order-3 md:hidden"
-                  >
-                    <LogOut className="h-5 w-5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="bottom">
-                  <p>Sair</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-
-          {/* Botão de alternar tema (visível só em md+) */}
+          {/* Botão de alternar tema (logo após os pontos, visível em todas as telas) */}
           <TooltipProvider delayDuration={100}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" onClick={toggleTheme} className="hidden md:flex rounded-full group hover:scale-105">
-                  {theme === 'light' ? <Sun className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" /> : <Moon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleTheme}
+                  className="rounded-full group hover:scale-105"
+                  aria-label="Alternar Tema"
+                >
+                  {theme === 'light' ? (
+                    <Sun className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+                  ) : (
+                    <Moon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
+                  )}
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="bottom">
@@ -150,6 +129,16 @@ const Navbar = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+          {/* Botão do menu mobile (hamburguer ou X) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={toggleMenu}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
 
           {/* Avatar e logout (visíveis só em md+) */}
           {user && (
