@@ -182,21 +182,20 @@ const Navbar = () => {
       {/* Menu mobile: só aparece se isOpen for true */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }} // Começa invisível e colapsado
-          animate={{ opacity: 1, height: "auto" }} // Anima para aparecer e expandir
-          exit={{ opacity: 0, height: 0 }} // Anima para sumir e colapsar
-          transition={{ duration: 0.3 }} // Duração da animação
-          className="md:hidden border-t" // Só aparece em telas pequenas, com borda no topo
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden border-t"
         >
           <div className="container py-4 flex flex-col gap-4">
             {/* Se o usuário estiver logado, mostra o atalho para o perfil com avatar e pontos */}
             {user && (
               <Link
                 to="/perfil"
-                onClick={closeMenu} // Fecha o menu ao clicar
+                onClick={closeMenu}
                 className="flex items-center gap-3 p-3 bg-muted rounded-lg"
               >
-                {/* Avatar do usuário, com fallback para inicial do nome */}
                 <Avatar className="h-10 w-10 border-2 border-primary">
                   <AvatarImage
                     src={user.avatar || `https://avatar.vercel.sh/${user.username}.png`}
@@ -207,9 +206,7 @@ const Navbar = () => {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  {/* Nome do usuário */}
                   <p className="font-medium">{user.username}</p>
-                  {/* Pontuação do usuário, com ícone de gema */}
                   <p className="text-sm text-muted-foreground flex items-center gap-1">
                     <Gem className="h-3 w-3 text-primary" />
                     {user.points} pontos
@@ -218,20 +215,6 @@ const Navbar = () => {
               </Link>
             )}
 
-            {/* Botão de alternância de tema no mobile */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="flex rounded-full group hover:scale-105"
-              aria-label="Alternar Tema"
-            >
-              {theme === 'light' ? (
-                <Sun className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-              ) : (
-                <Moon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform" />
-              )}
-            </Button>
 
             {/* Navegação principal em formato de coluna para mobile */}
             <nav className="flex flex-col gap-2">
@@ -242,11 +225,10 @@ const Navbar = () => {
                   icon={link.icon}
                   label={link.name}
                   currentPath={location.pathname}
-                  onClick={closeMenu} // Fecha o menu ao navegar
+                  onClick={closeMenu}
                 />
               ))}
 
-              {/* Se o usuário estiver logado, mostra atalhos para perfil e logout */}
               {user ? (
                 <>
                   <Link
@@ -264,14 +246,13 @@ const Navbar = () => {
                   <Button
                     variant="ghost"
                     className="justify-start p-3 h-auto font-medium flex items-center gap-3 text-destructive hover:text-destructive hover:bg-destructive/10"
-                    onClick={handleLogout} // Faz logout e fecha menu
+                    onClick={handleLogout}
                   >
                     <LogOut className="h-5 w-5" />
                     Sair
                   </Button>
                 </>
               ) : (
-                // Se não estiver logado, mostra botões para login e cadastro
                 <div className="flex flex-col gap-2 mt-2">
                   <Button onClick={() => { navigate("/login"); closeMenu(); }}>
                     Entrar
