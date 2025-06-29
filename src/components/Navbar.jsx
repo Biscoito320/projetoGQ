@@ -98,7 +98,46 @@ const Navbar = () => {
 
         {/* Área de ações à direita (tema, usuário, menu mobile) */}
         <div className="flex items-center gap-3">
-          {/* Botão para alternar tema claro/escuro, com tooltip */}
+          {/* Pontuação do usuário (sempre visível) */}
+          {user && (
+            <div className="flex items-center gap-2 bg-muted/80 px-4 py-1.5 rounded-full border-2 border-primary/30 shadow-inner transform transition-transform hover:scale-105 md:order-1 order-1">
+              <Gem className="h-4 w-4"/>
+              <span className="text-sm font-bold text-foreground">{user.points} pts</span>
+            </div>
+          )}
+
+          {/* Botão do menu mobile (hamburguer ou X) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden order-2"
+            onClick={toggleMenu}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+
+          {/* Botão de logout (apenas se logado) */}
+          {user && (
+            <TooltipProvider delayDuration={100}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleLogout}
+                    className="text-muted-foreground hover:text-destructive order-3 md:hidden"
+                  >
+                    <LogOut className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p>Sair</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+
+          {/* Botão de alternar tema (visível só em md+) */}
           <TooltipProvider delayDuration={100}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -112,15 +151,10 @@ const Navbar = () => {
             </Tooltip>
           </TooltipProvider>
 
-          {/* Se o usuário está logado, mostra pontos, avatar e logout */}
-          {user ? (
-            <div className="flex items-center gap-3">
-              {/* Pontuação do usuário */}
-              <div className="flex items-center gap-2 bg-muted/80 px-4 py-1.5 rounded-full border-2 border-primary/30 shadow-inner transform transition-transform hover:scale-105">
-                <Gem className="h-4 w-4"/>
-                <span className="text-sm font-bold text-foreground">{user.points} pts</span>
-              </div>
-              {/* Avatar do usuário com tooltip para perfil */}
+          {/* Avatar e logout (visíveis só em md+) */}
+          {user && (
+            <div className="hidden md:flex items-center gap-3">
+              {/* Avatar */}
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -138,7 +172,7 @@ const Navbar = () => {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              {/* Botão de logout com tooltip */}
+              {/* Botão de logout */}
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -152,25 +186,7 @@ const Navbar = () => {
                 </Tooltip>
               </TooltipProvider>
             </div>
-          ) : (
-            // Se não está logado, mostra botões de login e cadastro (apenas em telas médias para cima)
-            <div className="hidden md:flex items-center gap-2">
-              <Button className="rounded-full" variant="ghost" onClick={() => navigate("/login")}>
-                Entrar
-              </Button>
-              <Button className="rounded-full" onClick={() => navigate("/cadastro")}>Cadastrar</Button>
-            </div>
           )}
-          {/* Botão do menu mobile (hamburguer ou X) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={toggleMenu} // Ao clicar, abre ou fecha o menu mobile
-          >
-            {/* Ícone do menu hamburguer (Menu) ou de fechar (X), dependendo do estado */}
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
         </div>
       </div>
 
